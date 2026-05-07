@@ -1,1 +1,1 @@
-export const url:string='https://redbus-backend-gace.onrender.com';
+export const url = 'https://redbus-backend-gace.onrender.com/';
