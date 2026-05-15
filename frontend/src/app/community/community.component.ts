@@ -9,13 +9,13 @@ import { CommunityService } from '../services/community.service';
 
 export class CommunityComponent {
 
-  constructor(private communityService:CommunityService){}
+  constructor(private communityService: CommunityService) {}
 
   hashtags = '';
 
-  editingIndex:number|null = null;
+  editingIndex:number | null = null;
 
-  selectedImage:any='';
+  selectedImage:any = '';
 
   showForm = false;
 
@@ -24,29 +24,63 @@ export class CommunityComponent {
   description = '';
 
   route = '';
-loading = false;
 
-successMessage = '';
+  loading = false;
+
+  successMessage = '';
 
   posts:any[] = [];
-ngOnInit(){
 
-  this.getAllPosts();
+  isVerifiedUser = true;
 
-}
-  toggleForm() {
-    this.showForm = !this.showForm;
+  searchText = '';
+
+  forums = [
+    {
+      title:'Hyderabad Routes',
+      description:'Discuss bus routes and travel experiences in Hyderabad'
+    },
+    {
+      title:'Travel Tips',
+      description:'Share useful travel advice and journey tips'
+    },
+    {
+      title:'Budget Travel',
+      description:'Discuss affordable travel options and offers'
+    },
+    {
+      title:'Night Journey',
+      description:'Share safety tips and overnight travel experiences'
+    }
+  ];
+
+  ngOnInit(){
+
+    this.getAllPosts();
+
   }
-getAllPosts(){
 
-  this.communityService.getPosts()
-  .subscribe((data:any)=>{
+  toggleForm(){
 
-    this.posts = data;
+    this.showForm = !this.showForm;
 
-  });
+  }
 
-}
+  /* GET POSTS */
+
+  getAllPosts(){
+
+    this.communityService.getPosts()
+    .subscribe((data:any)=>{
+
+      this.posts = data;
+
+    });
+
+  }
+
+  /* IMAGE SELECT */
+
   onFileSelected(event:any){
 
     const file = event.target.files[0];
@@ -67,206 +101,240 @@ getAllPosts(){
 
   }
 
+  /* CREATE OR UPDATE POST */
+
   createPost(){
+
     this.loading = true;
+
     if(!this.isVerifiedUser){
 
-  alert("Only verified users can create posts");
+      alert("Only verified users can create posts");
 
-  return;
+      this.loading = false;
 
-}
+      return;
 
-const newPost = {
-  title:this.title,
-  description:this.description,
-  route:this.route,
-  hashtags:this.hashtags,
-  image:this.selectedImage,
-  likes:0,
-  comments:[],
-  newComment:'',
-  reported:false,
- saved:false,
-following:false,
+    }
 
-};
+    const newPost = {
 
-if(this.editingIndex !== null){
+      title:this.title,
+      description:this.description,
+      route:this.route,
+      hashtags:this.hashtags,
+      image:this.selectedImage,
+      likes:0,
+      comments:[],
+      newComment:'',
+      reported:false,
+      saved:false,
+      following:false
 
-  const postId = this.posts[this.editingIndex]._id;
-this.communityService.createPost(newPost)
-.subscribe(()=>{
+    };
 
-  this.getAllPosts();
+    /* UPDATE POST */
 
-  this.loading = false;
+    if(this.editingIndex !== null){
 
-  this.successMessage = 'Post Created Successfully ✅';
+      const postId = this.posts[this.editingIndex]._id;
 
-  setTimeout(()=>{
+      this.communityService.updatePost(postId,newPost)
+      .subscribe(()=>{
 
-    this.successMessage = '';
+        this.getAllPosts();
 
-  },3000);
+        this.loading = false;
 
-});
-  this.editingIndex = null;
+        this.editingIndex = null;
 
-}
-else{
+      });
 
-  this.communityService.createPost(newPost)
-.subscribe(()=>{
+    }
 
-  this.getAllPosts();
+    /* CREATE POST */
 
-});
+    else{
 
-}
+      this.communityService.createPost(newPost)
+      .subscribe(()=>{
 
-    this.title='';
-    this.description='';
-    this.route='';
-    this.selectedImage='';
+        this.getAllPosts();
 
-    this.showForm=false;
+        this.loading = false;
+
+        this.successMessage = 'Post Created Successfully';
+
+        setTimeout(()=>{
+
+          this.successMessage = '';
+
+        },3000);
+
+      });
+
+    }
+
+    /* RESET FORM */
+
+    this.title = '';
+    this.description = '';
+    this.route = '';
+    this.hashtags = '';
+    this.selectedImage = '';
+
+    this.showForm = false;
 
   }
 
- likePost(post:any){
+  /* LIKE POST */
 
-  post.likes++;
+  likePost(post:any){
 
-  this.communityService.updatePost(post._id,post)
-  .subscribe();
-
-}addComment(post:any){
-
-  if(post.newComment.trim()!=''){
-
-    post.comments.push(post.newComment);
-
-    post.newComment='';
+    post.likes++;
 
     this.communityService.updatePost(post._id,post)
     .subscribe();
 
   }
 
-}
- deletePost(id:any){
+  /* ADD COMMENT */
 
-  this.communityService.deletePost(id)
-  .subscribe(()=>{
+  addComment(post:any){
 
-    this.getAllPosts();
+    if(post.newComment.trim() != ''){
 
-  });
+      post.comments.push(post.newComment);
 
-}
-sharePost(post:any){
+      post.newComment = '';
 
-  const text = `Check out this travel post: ${post.title}`;
+      this.communityService.updatePost(post._id,post)
+      .subscribe();
 
-  const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    }
 
-  window.open(url,'_blank');
-
-}
-reportPost(post:any){
-
-  post.reported = !post.reported;
-
-  this.communityService.updatePost(post._id,post)
-  .subscribe();
-
-}
-isTrending(post:any){
-
-  return post.likes >= 5;
-
-}
-toggleFollow(post:any){
-
-  post.following = !post.following;
-
-  this.communityService.updatePost(post._id,post)
-  .subscribe();
-
-}
-forums = [
-  {
-    title:'Hyderabad Routes',
-    description:'Discuss bus routes and travel experiences in Hyderabad'
-  },
-  {
-    title:'Travel Tips',
-    description:'Share useful travel advice and journey tips'
-  },
-  {
-    title:'Budget Travel',
-    description:'Discuss affordable travel options and offers'
-  },
-  {
-    title:'Night Journey',
-    description:'Share safety tips and overnight travel experiences'
   }
-];
-isVerifiedUser = true;
-searchText = '';
-filteredPosts(){
 
-  return this.posts.filter((post:any)=>
+  /* DELETE POST */
 
-    post.title.toLowerCase().includes(this.searchText.toLowerCase()) ||
+  deletePost(id:any){
 
-    post.route.toLowerCase().includes(this.searchText.toLowerCase()) ||
+    this.communityService.deletePost(id)
+    .subscribe(()=>{
 
-    post.description.toLowerCase().includes(this.searchText.toLowerCase())
+      this.getAllPosts();
 
-  );
+    });
 
-}
-getTotalLikes(){
+  }
 
-  return this.posts.reduce(
-    (total:any,post:any)=> total + post.likes,
-    0
-  );
+  /* SHARE POST */
 
-}
+  sharePost(post:any){
 
-getTotalComments(){
+    const text = `Check out this travel post: ${post.title}`;
 
-  return this.posts.reduce(
-    (total:any,post:any)=> total + post.comments.length,
-    0
-  );
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
 
-}
-toggleSave(post:any){
+    window.open(url,'_blank');
 
-  post.saved = !post.saved;
+  }
 
-  this.communityService.updatePost(post._id,post)
-  .subscribe();
+  /* REPORT POST */
 
-}
+  reportPost(post:any){
 
-editPost(post:any,index:number){
+    post.reported = !post.reported;
 
-  this.title = post.title;
+    this.communityService.updatePost(post._id,post)
+    .subscribe();
 
-  this.description = post.description;
+  }
 
-  this.route = post.route;
+  /* TRENDING */
 
-  this.selectedImage = post.image;
+  isTrending(post:any){
 
-  this.showForm = true;
+    return post.likes >= 5;
 
-  this.editingIndex = index;
+  }
 
-}
+  /* FOLLOW */
+
+  toggleFollow(post:any){
+
+    post.following = !post.following;
+
+    this.communityService.updatePost(post._id,post)
+    .subscribe();
+
+  }
+
+  /* SAVE POST */
+
+  toggleSave(post:any){
+
+    post.saved = !post.saved;
+
+    this.communityService.updatePost(post._id,post)
+    .subscribe();
+
+  }
+
+  /* EDIT POST */
+
+  editPost(post:any,index:number){
+
+    this.title = post.title;
+
+    this.description = post.description;
+
+    this.route = post.route;
+
+    this.selectedImage = post.image;
+
+    this.showForm = true;
+
+    this.editingIndex = index;
+
+  }
+
+  /* SEARCH */
+
+  filteredPosts(){
+
+    return this.posts.filter((post:any)=>
+
+      post.title.toLowerCase().includes(this.searchText.toLowerCase()) ||
+
+      post.route.toLowerCase().includes(this.searchText.toLowerCase()) ||
+
+      post.description.toLowerCase().includes(this.searchText.toLowerCase())
+
+    );
+
+  }
+
+  /* TOTAL LIKES */
+
+  getTotalLikes(){
+
+    return this.posts.reduce(
+      (total:any,post:any)=> total + post.likes,
+      0
+    );
+
+  }
+
+  /* TOTAL COMMENTS */
+
+  getTotalComments(){
+
+    return this.posts.reduce(
+      (total:any,post:any)=> total + post.comments.length,
+      0
+    );
+
+  }
+
 }
