@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CommunityService {
 
-  baseUrl = 'https://tedbus-backend.onrender.com';
+baseUrl = 'https://tedbus-backend.onrender.com/posts';
 
   constructor(private http:HttpClient) { }
 
