@@ -1,0 +1,319 @@
+
+<div class="community-container">
+
+    <!-- HEADER -->
+
+    <div class="top-section">
+
+        <div>
+
+            <h1 class="community-title">
+                Travel Community
+            </h1>
+
+            <p class="community-subtitle">
+                Share travel stories, tips and route experiences with fellow travelers.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- SUCCESS MESSAGE -->
+
+    <p class="success-message"
+       *ngIf="successMessage">
+        {{successMessage}}
+    </p>
+
+    <!-- SEARCH -->
+
+    <div class="search-container">
+
+        <input class="search-input"
+               type="text"
+               placeholder="Search routes, stories and travel tips"
+               [(ngModel)]="searchText">
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="stats-container">
+
+        <div class="stats-card">
+            <h2>{{posts.length}}</h2>
+            <p>Total Posts</p>
+        </div>
+
+        <div class="stats-card">
+            <h2>{{getTotalLikes()}}</h2>
+            <p>Total Likes</p>
+        </div>
+
+        <div class="stats-card">
+            <h2>{{getTotalComments()}}</h2>
+            <p>Comments</p>
+        </div>
+
+        <div class="stats-card">
+            <h2>24+</h2>
+            <p>Popular Routes</p>
+        </div>
+
+    </div>
+
+    <!-- CREATE BUTTON -->
+
+    <button class="create-btn"
+            (click)="toggleForm()">
+        Create Post
+    </button>
+
+    <!-- FORM -->
+
+    <div class="post-form"
+         *ngIf="showForm">
+
+        <input type="text"
+               placeholder="Enter title"
+               [(ngModel)]="title">
+
+        <textarea placeholder="Share your travel experience"
+                  [(ngModel)]="description">
+        </textarea>
+
+        <input type="text"
+               placeholder="Route name"
+               [(ngModel)]="route">
+
+        <input type="text"
+               placeholder="#Travel #Hyderabad"
+               [(ngModel)]="hashtags">
+
+        <input type="file"
+               (change)="onFileSelected($event)">
+
+        <button class="submit-btn"
+                type="button"
+                (click)="createPost()">
+
+            {{ loading ? 'Posting...' : 'Submit Post' }}
+
+        </button>
+
+    </div>
+
+    <!-- EMPTY -->
+
+    <div *ngIf="posts.length==0"
+         class="empty-post">
+
+        <h2>No posts available</h2>
+
+        <p>
+            Start sharing your travel experiences and travel tips.
+        </p>
+
+    </div>
+
+    <!-- POSTS -->
+
+    <div class="post-card"
+         *ngFor="let post of filteredPosts(); let i = index">
+
+        <!-- HEADER -->
+
+        <div class="post-header">
+
+            <div class="profile-section">
+
+                <div class="profile-circle">
+                    H
+                </div>
+
+                <div>
+
+                    <h3 class="user-name">
+                        Hema Sri
+
+                        <span class="verified-badge"
+                              *ngIf="isVerifiedUser">
+                            Verified
+                        </span>
+                    </h3>
+
+                    <p class="post-time">
+                        Posted recently
+                    </p>
+
+                    <button class="follow-btn"
+                            type="button"
+                            (click)="toggleFollow(post)">
+
+                        {{ post.following ? 'Following' : 'Follow' }}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button class="delete-btn"
+                    type="button"
+                    (click)="deletePost(post._id)">
+                Delete
+            </button>
+
+        </div>
+
+        <!-- TITLE -->
+
+        <h2 class="post-title">
+            {{post.title}}
+        </h2>
+
+        <!-- TRENDING -->
+
+        <div class="trending-badge"
+             *ngIf="isTrending(post)">
+            Trending
+        </div>
+
+        <!-- IMAGE -->
+
+        <img class="post-image"
+             [src]="post.image"
+             *ngIf="post.image">
+
+        <!-- DESCRIPTION -->
+
+        <p class="post-description">
+            {{post.description}}
+        </p>
+
+        <!-- HASHTAGS -->
+
+        <p class="hashtags">
+            {{post.hashtags}}
+        </p>
+
+        <!-- ROUTE -->
+
+        <h4 class="route-text">
+            Route : {{post.route}}
+        </h4>
+
+        <!-- REPORTED -->
+
+        <p class="reported-label"
+           *ngIf="post.reported">
+           This post has been reported
+        </p>
+
+        <!-- ACTIONS -->
+
+        <div class="action-section">
+
+            <button class="like-btn"
+                    type="button"
+                    (click)="likePost(post)">
+                Like
+            </button>
+
+            <button class="comment-btn-small"
+                    type="button">
+                {{post.likes}} Likes
+            </button>
+
+            <button class="share-btn"
+                    type="button"
+                    (click)="sharePost(post)">
+                Share
+            </button>
+
+            <button class="save-btn"
+                    type="button"
+                    (click)="toggleSave(post)">
+
+                {{ post.saved ? 'Saved' : 'Save' }}
+
+            </button>
+
+            <button class="edit-btn"
+                    type="button"
+                    (click)="editPost(post,i)">
+                Edit
+            </button>
+
+            <button class="report-btn"
+                    type="button"
+                    (click)="reportPost(post)">
+
+                {{ post.reported ? 'Remove Report' : 'Report' }}
+
+            </button>
+
+        </div>
+
+        <!-- COMMENTS -->
+
+        <div class="comment-section">
+
+            <input class="comment-input"
+                   type="text"
+                   placeholder="Write a comment"
+                   [(ngModel)]="post.newComment">
+
+            <button class="comment-btn"
+                    type="button"
+                    (click)="addComment(post)">
+                Comment
+            </button>
+
+        </div>
+
+        <!-- COMMENT LIST -->
+
+        <div class="comment-box">
+
+            <p *ngFor="let comment of post.comments">
+                {{comment}}
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- FORUM -->
+
+    <div class="forum-section">
+
+        <h2 class="forum-heading">
+            Travel Discussion Forums
+        </h2>
+
+        <div class="forum-container">
+
+            <div class="forum-card"
+                 *ngFor="let forum of forums">
+
+                <h3>
+                    {{forum.title}}
+                </h3>
+
+                <p>
+                    {{forum.description}}
+                </p>
+
+                <button class="join-btn">
+                    Join Discussion
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
