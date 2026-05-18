@@ -4,9 +4,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CommunityService {
 
-baseUrl = 'https://tedbus-backend.onrender.com/posts';
+  baseUrl = 'http://localhost:5000/posts';
 
   constructor(private http:HttpClient) { }
 

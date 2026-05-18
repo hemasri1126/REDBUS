@@ -1,0 +1,170 @@
+.notification-container{
+
+    width:90%;
+    margin:auto;
+    padding:20px;
+
+}
+
+.notification-title{
+
+    font-size:32px;
+    margin-bottom:20px;
+    color:#d84e55;
+
+}
+
+.notification-card{
+
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+
+}
+
+.notification-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+.status{
+
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
+    color:white;
+
+}
+
+.unread{
+
+    background:#d84e55;
+
+}
+
+.read{
+
+    background:green;
+
+}
+
+.message{
+
+    margin-top:10px;
+    font-size:16px;
+
+}
+
+.time{
+
+    margin-top:10px;
+    color:gray;
+    font-size:14px;
+
+}
+
+.read-btn{
+
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    background:#d84e55;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+.preferences-section{
+
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:30px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+
+}
+
+.preference-item{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+
+}
+
+select{
+
+    padding:8px;
+    border-radius:6px;
+
+}
+.create-btn{
+
+    padding:12px 20px;
+    background:#d84e55;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:20px;
+
+}
+.event-btn{
+
+    padding:10px 18px;
+    margin-left:10px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:8px;
+    background:#444;
+    color:white;
+    cursor:pointer;
+
+}
+.title-section{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+}
+
+.type-badge{
+
+    background:#d84e55;
+    color:white;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+    text-transform:capitalize;
+
+}
+.all-btn{
+
+    padding:10px 18px;
+    margin-left:10px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:8px;
+    background:#d84e55;
+    color:white;
+    cursor:pointer;
+
+}
+.delete-btn{
+
+    padding:8px 14px;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:6px;
+    margin-left:10px;
+    cursor:pointer;
+
+}

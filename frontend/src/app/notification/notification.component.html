@@ -1,0 +1,143 @@
+<div class="notification-container">
+<button class="create-btn"
+        (click)="createSampleNotification()">
+
+    Create Notification
+
+</button>
+<button class="event-btn"
+        (click)="createJourneyReminder()">
+
+    Journey Reminder
+
+</button>
+
+<button class="event-btn"
+        (click)="createOfferNotification()">
+
+    Promotional Offer
+
+</button>
+
+<button class="event-btn"
+        (click)="createCancellationNotification()">
+
+    Cancellation Alert
+
+</button>
+    <h1 class="notification-title">
+        Notifications
+    </h1>
+<button class="all-btn"
+        (click)="showAllNotifications()">
+
+    Show All
+
+</button>
+    <div class="notification-card"
+         *ngFor="let notification of notifications">
+
+        <div class="notification-header">
+<div class="title-section">
+
+    <h3>
+        {{notification.title}}
+    </h3>
+
+    <span class="type-badge">
+
+        {{notification.type}}
+
+    </span>
+
+</div>
+
+            <span class="status"
+                  [ngClass]="notification.status">
+
+                {{notification.status}}
+
+            </span>
+
+        </div>
+
+        <p class="message">
+            {{notification.message}}
+        </p>
+
+        <p class="time">
+            {{notification.time}}
+        </p>
+
+        <button class="read-btn"
+                (click)="markAsRead(notification)">
+
+            Mark as Read
+
+        </button>
+        <button class="delete-btn"
+        (click)="deleteNotification(notification._id)">
+
+    Delete
+
+</button>
+
+    </div>
+
+</div>
+<div class="preferences-section">
+
+    <h2>
+        Notification Preferences
+    </h2>
+
+    <div class="preference-item">
+
+        <label>
+            Email Notifications
+        </label>
+
+        <input type="checkbox"
+               [(ngModel)]="emailEnabled">
+
+    </div>
+
+    <div class="preference-item">
+
+        <label>
+            Push Notifications
+        </label>
+
+        <input type="checkbox"
+               [(ngModel)]="pushEnabled">
+
+    </div>
+
+    <div class="preference-item">
+
+        <label>
+            Promotional Notifications
+        </label>
+
+        <input type="checkbox"
+               [(ngModel)]="promoEnabled">
+
+    </div>
+
+    <div class="preference-item">
+
+        <label>
+            Language
+        </label>
+
+        <select [(ngModel)]="selectedLanguage">
+
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Telugu</option>
+
+        </select>
+
+    </div>
+
+</div>

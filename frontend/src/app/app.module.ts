@@ -34,6 +34,7 @@ import { ProfilePageComponent } from './Component/profile-page/profile-page.comp
 import { MyTripComponent } from './Component/profile-page/my-trip/my-trip.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommunityComponent } from './community/community.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CommunityComponent } from './community/community.component';
     PaymentPageComponent,
     ProfilePageComponent,
     MyTripComponent,
-    CommunityComponent
+    CommunityComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

@@ -5,12 +5,14 @@ import { SelectbusPageComponent } from './Component/selectbus-page/selectbus-pag
 import { PaymentPageComponent } from './Component/payment-page/payment-page.component';
 import { ProfilePageComponent } from './Component/profile-page/profile-page.component';
 import { CommunityComponent } from './community/community.component';
+import { NotificationComponent } from './notification/notification.component';
 const routes: Routes = [
   {path: '',component:LandingPageComponent},
   {path: 'select-bus',component:SelectbusPageComponent},
   {path:'payment',component:PaymentPageComponent},
   {path:'profile',component:ProfilePageComponent},
-  {path:'community',component:CommunityComponent}
+  {path:'community',component:CommunityComponent},
+  {path:'notification',component:NotificationComponent}
 ];
 
 @NgModule({
