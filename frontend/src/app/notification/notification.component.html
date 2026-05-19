@@ -1,143 +1,163 @@
 <div class="notification-container">
+
 <button class="create-btn"
         (click)="createSampleNotification()">
 
-    Create Notification
+    {{'CREATE_NOTIFICATION' | translate}}
 
 </button>
+
 <button class="event-btn"
         (click)="createJourneyReminder()">
 
-    Journey Reminder
+    {{'JOURNEY_REMINDER' | translate}}
 
 </button>
 
 <button class="event-btn"
         (click)="createOfferNotification()">
 
-    Promotional Offer
+    {{'PROMOTIONAL_OFFER' | translate}}
 
 </button>
 
 <button class="event-btn"
         (click)="createCancellationNotification()">
 
-    Cancellation Alert
+    {{'CANCELLATION_ALERT' | translate}}
 
 </button>
-    <h1 class="notification-title">
-        Notifications
-    </h1>
+
+<h1 class="notification-title">
+
+    {{'NOTIFICATIONS' | translate}}
+
+</h1>
+
 <button class="all-btn"
         (click)="showAllNotifications()">
 
     Show All
 
 </button>
-    <div class="notification-card"
-         *ngFor="let notification of notifications">
 
-        <div class="notification-header">
-<div class="title-section">
+<div class="notification-card"
+     *ngFor="let notification of notifications">
 
-    <h3>
-        {{notification.title}}
-    </h3>
+    <div class="notification-header">
 
-    <span class="type-badge">
+        <div class="title-section">
 
-        {{notification.type}}
+            <h3>
+                {{notification.title}}
+            </h3>
 
-    </span>
+            <span class="type-badge">
 
-</div>
-
-            <span class="status"
-                  [ngClass]="notification.status">
-
-                {{notification.status}}
+                {{notification.type}}
 
             </span>
 
         </div>
 
-        <p class="message">
-            {{notification.message}}
-        </p>
+        <span class="status"
+              [ngClass]="notification.status">
 
-        <p class="time">
-            {{notification.time}}
-        </p>
+            {{notification.status}}
 
-        <button class="read-btn"
-                (click)="markAsRead(notification)">
-
-            Mark as Read
-
-        </button>
-        <button class="delete-btn"
-        (click)="deleteNotification(notification._id)">
-
-    Delete
-
-</button>
+        </span>
 
     </div>
+
+    <p class="message">
+        {{notification.message}}
+    </p>
+
+    <p class="time">
+        {{notification.time}}
+    </p>
+
+    <button class="read-btn"
+            (click)="markAsRead(notification)">
+
+        Mark as Read
+
+    </button>
+
+    <button class="delete-btn"
+            (click)="deleteNotification(notification._id)">
+
+        Delete
+
+    </button>
 
 </div>
+
+</div>
+
 <div class="preferences-section">
 
-    <h2>
-        Notification Preferences
-    </h2>
+<h2>
 
-    <div class="preference-item">
+    Notification Preferences
 
-        <label>
-            Email Notifications
-        </label>
+</h2>
 
-        <input type="checkbox"
-               [(ngModel)]="emailEnabled">
+<div class="preference-item">
 
-    </div>
+    <label>
 
-    <div class="preference-item">
+        {{'EMAIL_NOTIFICATIONS' | translate}}
 
-        <label>
-            Push Notifications
-        </label>
+    </label>
 
-        <input type="checkbox"
-               [(ngModel)]="pushEnabled">
+    <input type="checkbox"
+           [(ngModel)]="emailEnabled">
 
-    </div>
+</div>
 
-    <div class="preference-item">
+<div class="preference-item">
 
-        <label>
-            Promotional Notifications
-        </label>
+    <label>
 
-        <input type="checkbox"
-               [(ngModel)]="promoEnabled">
+        {{'PUSH_NOTIFICATIONS' | translate}}
 
-    </div>
+    </label>
 
-    <div class="preference-item">
+    <input type="checkbox"
+           [(ngModel)]="pushEnabled">
 
-        <label>
-            Language
-        </label>
+</div>
 
-        <select [(ngModel)]="selectedLanguage">
+<div class="preference-item">
 
-            <option>English</option>
-            <option>Hindi</option>
-            <option>Telugu</option>
+    <label>
 
-        </select>
+        {{'PROMOTIONAL_NOTIFICATIONS' | translate}}
 
-    </div>
+    </label>
+
+    <input type="checkbox"
+           [(ngModel)]="promoEnabled">
+
+</div>
+
+<div class="preference-item">
+
+    <label>
+
+        {{'LANGUAGE' | translate}}
+
+    </label>
+
+    <select [(ngModel)]="selectedLanguage">
+(change)="changeLanguage($event)"
+        <option>English</option>
+        <option>Hindi</option>
+        <option>Telugu</option>
+
+    </select>
+
+</div>
 
 </div>
