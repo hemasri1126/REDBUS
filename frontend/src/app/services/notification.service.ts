@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class NotificationService {
 
-baseUrl = 'http://localhost:5000/notifications';
+baseUrl = 'https://tedbus-backend.onrender.com/notifications';
 
   constructor(private http:HttpClient) { }
 

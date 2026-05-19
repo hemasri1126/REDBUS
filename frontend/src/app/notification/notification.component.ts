@@ -82,7 +82,7 @@ socket:any;
 
     this.getAllNotifications();
     this.requestNotificationPermission();
-this.socket = io('http://localhost:5000');
+this.socket = io('https://tedbus-backend.onrender.com');
 
 this.socket.on(
   'newNotification',
