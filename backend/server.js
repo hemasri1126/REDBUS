@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const nodemailer = require('nodemailer');
+const http = require('http');
+const { Server } = require('socket.io');
 
 const Post = require('./models/Post');
 const Notification = require('./models/Notification');
@@ -28,6 +31,22 @@ mongoose.connect(
 
 });
 
+/* EMAIL TRANSPORTER */
+
+const transporter = nodemailer.createTransport({
+
+    service:'gmail',
+
+    auth:{
+
+        user:'hemashri1126@gmail.com',
+
+        pass:'nxlutttwtpdjdbxy'
+
+    }
+
+});
+
 /* TEST API */
 
 app.get('/',(req,res)=>{
@@ -50,6 +69,8 @@ app.post('/posts',async(req,res)=>{
 
     }
     catch(error){
+
+        console.log(error);
 
         res.status(500).json(error);
 
@@ -124,14 +145,58 @@ app.post('/notifications',async(req,res)=>{
 
     try{
 
+        console.log("Notification API called");
+
         const notification = new Notification(req.body);
 
         await notification.save();
+
+        /* SOCKET EVENT */
+
+        io.emit('newNotification',notification);
+
+        /* SEND EMAIL */
+
+        const info = await transporter.sendMail({
+
+            from:'hemashri1126@gmail.com',
+
+            to:'hemashri1126@gmail.com',
+
+            subject:notification.title,
+
+            html: `
+            
+            <div style="font-family:Arial;padding:20px;">
+
+                <h2 style="color:#d84e55;">
+                    ${notification.title}
+                </h2>
+
+                <p style="font-size:16px;">
+                    ${notification.message}
+                </p>
+
+                <hr>
+
+                <p>
+                    Thank you for choosing TedBus.
+                </p>
+
+            </div>
+
+            `
+
+        });
+
+        console.log(info);
 
         res.status(200).json(notification);
 
     }
     catch(error){
+
+        console.log(error);
 
         res.status(500).json(error);
 
@@ -182,14 +247,6 @@ app.put('/notifications/:id',async(req,res)=>{
 
 });
 
-/* SERVER */
-
-app.listen(5000,()=>{
-
-    console.log("Server running on port 5000");
-
-});
-
 /* DELETE NOTIFICATION API */
 
 app.delete('/notifications/:id',async(req,res)=>{
@@ -210,5 +267,35 @@ app.delete('/notifications/:id',async(req,res)=>{
         res.status(500).json(error);
 
     }
+
+});
+
+/* SOCKET.IO SERVER */
+
+const server = http.createServer(app);
+
+const io = new Server(server,{
+
+    cors:{
+
+        origin:'http://localhost:4200',
+
+        methods:['GET','POST']
+
+    }
+
+});
+
+io.on('connection',(socket)=>{
+
+    console.log('User Connected');
+
+});
+
+/* SERVER */
+
+server.listen(5000,()=>{
+
+    console.log("Server running on port 5000");
 
 });
