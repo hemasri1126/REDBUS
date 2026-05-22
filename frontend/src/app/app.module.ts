@@ -63,6 +63,7 @@ import { CommunityComponent } from './community/community.component';
 import { NotificationComponent } from './notification/notification.component';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { RoutePlannerComponent } from './route-planner/route-planner.component';
 
 @NgModule({
 
@@ -88,7 +89,8 @@ import { TranslateModule } from '@ngx-translate/core';
     ProfilePageComponent,
     MyTripComponent,
     CommunityComponent,
-    NotificationComponent
+    NotificationComponent,
+    RoutePlannerComponent
 
   ],
 

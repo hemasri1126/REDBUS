@@ -6,13 +6,16 @@ import { PaymentPageComponent } from './Component/payment-page/payment-page.comp
 import { ProfilePageComponent } from './Component/profile-page/profile-page.component';
 import { CommunityComponent } from './community/community.component';
 import { NotificationComponent } from './notification/notification.component';
+import { RoutePlannerComponent }
+from './route-planner/route-planner.component';
 const routes: Routes = [
   {path: '',component:LandingPageComponent},
   {path: 'select-bus',component:SelectbusPageComponent},
   {path:'payment',component:PaymentPageComponent},
   {path:'profile',component:ProfilePageComponent},
   {path:'community',component:CommunityComponent},
-  {path:'notification',component:NotificationComponent}
+  {path:'notification',component:NotificationComponent},
+  {path:'route-planner',component:RoutePlannerComponent}
 ];
 
 @NgModule({

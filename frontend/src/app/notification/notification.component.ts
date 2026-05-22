@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NotificationService } from '../services/notification.service';
 import { io } from 'socket.io-client';
-import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
@@ -10,61 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class NotificationComponent {
 
- constructor(
-
-  private notificationService:NotificationService,
-
-  private translate:TranslateService
-
-){
-
-  translate.setTranslation('en',{
-
-    NOTIFICATIONS:'Notifications',
-    CREATE_NOTIFICATION:'Create Notification',
-    JOURNEY_REMINDER:'Journey Reminder',
-    PROMOTIONAL_OFFER:'Promotional Offer',
-    CANCELLATION_ALERT:'Cancellation Alert',
-    EMAIL_NOTIFICATIONS:'Email Notifications',
-    PUSH_NOTIFICATIONS:'Push Notifications',
-    PROMOTIONAL_NOTIFICATIONS:'Promotional Notifications',
-    LANGUAGE:'Language'
-
-  });
-
-  translate.setTranslation('hi',{
-
-    NOTIFICATIONS:'सूचनाएं',
-    CREATE_NOTIFICATION:'सूचना बनाएं',
-    JOURNEY_REMINDER:'यात्रा अनुस्मारक',
-    PROMOTIONAL_OFFER:'प्रमोशनल ऑफर',
-    CANCELLATION_ALERT:'रद्द अलर्ट',
-    EMAIL_NOTIFICATIONS:'ईमेल सूचनाएं',
-    PUSH_NOTIFICATIONS:'पुश सूचनाएं',
-    PROMOTIONAL_NOTIFICATIONS:'प्रमोशनल सूचनाएं',
-    LANGUAGE:'भाषा'
-
-  });
-
-  translate.setTranslation('te',{
-
-    NOTIFICATIONS:'నోటిఫికేషన్లు',
-    CREATE_NOTIFICATION:'నోటిఫికేషన్ సృష్టించండి',
-    JOURNEY_REMINDER:'ప్రయాణ రిమైండర్',
-    PROMOTIONAL_OFFER:'ప్రచార ఆఫర్',
-    CANCELLATION_ALERT:'రద్దు హెచ్చరిక',
-    EMAIL_NOTIFICATIONS:'ఇమెయిల్ నోటిఫికేషన్లు',
-    PUSH_NOTIFICATIONS:'పుష్ నోటిఫికేషన్లు',
-    PROMOTIONAL_NOTIFICATIONS:'ప్రచార నోటిఫికేషన్లు',
-    LANGUAGE:'భాష'
-
-  });
-
-  translate.setDefaultLang('en');
-
-  translate.use('en');
-
-}
+  constructor(
+    private notificationService:NotificationService
+  ){}
 
   notifications:any[] = [];
 
@@ -77,23 +25,155 @@ export class NotificationComponent {
   promoEnabled = false;
 
   selectedLanguage = 'English';
-socket:any;
+
+  socket:any;
+
+  translations:any = {};
+
   ngOnInit(){
 
     this.getAllNotifications();
+
     this.requestNotificationPermission();
-this.socket = io('https://tedbus-backend.onrender.com');
 
-this.socket.on(
-  'newNotification',
-  (data:any)=>{
+    const savedLanguage =
+    localStorage.getItem('language');
 
-    console.log(data);
+    if(savedLanguage){
 
-    this.getAllNotifications();
+      this.selectedLanguage =
+      savedLanguage;
+
+      this.setLanguage(savedLanguage);
+
+    }
+
+    else{
+
+      this.setLanguage('English');
+
+    }
+
+    this.socket = io(
+      'https://tedbus-backend.onrender.com'
+    );
+
+    this.socket.on(
+      'newNotification',
+      (data:any)=>{
+
+        console.log(data);
+
+        this.getAllNotifications();
+
+      }
+    );
 
   }
-);
+
+  /* LANGUAGE TRANSLATION */
+
+  setLanguage(language:any){
+
+    if(language === 'Hindi'){
+
+      this.translations = {
+
+        notifications:'सूचनाएं',
+
+        create:'सूचना बनाएं',
+
+        reminder:'यात्रा अनुस्मारक',
+
+        offer:'प्रमोशनल ऑफर',
+
+        cancel:'रद्द अलर्ट',
+
+        mark:'पढ़ा हुआ चिन्हित करें',
+
+        delete:'डिलीट',
+
+        showall:'सभी दिखाएं',
+
+        read:'पढ़ा हुआ',
+
+        unread:'अपठित'
+
+      };
+
+    }
+
+    else if(language === 'Telugu'){
+
+      this.translations = {
+
+        notifications:'నోటిఫికేషన్లు',
+
+        create:'నోటిఫికేషన్ సృష్టించండి',
+
+        reminder:'ప్రయాణ రిమైండర్',
+
+        offer:'ప్రచార ఆఫర్',
+
+        cancel:'రద్దు హెచ్చరిక',
+
+        mark:'చదివినట్లు గుర్తించు',
+
+        delete:'తొలగించు',
+
+        showall:'అన్నీ చూపించు',
+
+        read:'చదివినవి',
+
+        unread:'చదవనివి'
+
+      };
+
+    }
+
+    else{
+
+      this.translations = {
+
+        notifications:'Notifications',
+
+        create:'Create Notification',
+
+        reminder:'Journey Reminder',
+
+        offer:'Promotional Offer',
+
+        cancel:'Cancellation Alert',
+
+        mark:'Mark as Read',
+
+        delete:'Delete',
+
+        showall:'Show All',
+
+        read:'read',
+
+        unread:'unread'
+
+      };
+
+    }
+
+  }
+
+  changeLanguage(event:any){
+
+    const language = event.target.value;
+
+    this.selectedLanguage = language;
+
+    this.setLanguage(language);
+
+    localStorage.setItem(
+      'language',
+      language
+    );
+
   }
 
   /* GET NOTIFICATIONS */
@@ -134,11 +214,42 @@ this.socket.on(
 
   createSampleNotification(){
 
+    let title = '';
+
+    let message = '';
+
+    if(this.selectedLanguage === 'Hindi'){
+
+      title = 'बुकिंग कन्फर्म';
+
+      message =
+      'आपकी हैदराबाद से बैंगलोर बुकिंग कन्फर्म हो गई है।';
+
+    }
+
+    else if(this.selectedLanguage === 'Telugu'){
+
+      title = 'బుకింగ్ నిర్ధారించబడింది';
+
+      message =
+      'మీ హైదరాబాద్ నుండి బెంగళూరు బుకింగ్ నిర్ధారించబడింది.';
+
+    }
+
+    else{
+
+      title = 'Booking Confirmed';
+
+      message =
+      'Your Hyderabad to Bangalore booking is confirmed.';
+
+    }
+
     const notification = {
 
-      title:'Booking Confirmed',
+      title:title,
 
-      message:'Your Hyderabad to Bangalore booking is confirmed.',
+      message:message,
 
       status:'unread',
 
@@ -155,17 +266,18 @@ this.socket.on(
       this.getAllNotifications();
 
     });
+
     new Notification(
 
-  notification.title,
+      notification.title,
 
-  {
+      {
 
-    body:notification.message
+        body:notification.message
 
-  }
+      }
 
-);
+    );
 
   }
 
@@ -205,60 +317,42 @@ this.socket.on(
 
       notification.type === 'cancellation'
     );
-    
-
-  }
-/* SHOW ALL */
-
-showAllNotifications(){
-
-  this.notifications = this.allNotifications;
-
-}
-
-/* DELETE NOTIFICATION */
-
-deleteNotification(id:any){
-
-  this.notificationService
-  .deleteNotification(id)
-  .subscribe(()=>{
-
-    this.getAllNotifications();
-
-  });
-
-}
-requestNotificationPermission(){
-
-  if("Notification" in window){
-
-    Notification.requestPermission();
 
   }
 
-}
-changeLanguage(event:any){
+  /* SHOW ALL */
 
-  const language = event.target.value;
+  showAllNotifications(){
 
-  if(language === 'English'){
-
-    this.translate.use('en');
+    this.notifications =
+    this.allNotifications;
 
   }
 
-  else if(language === 'Hindi'){
+  /* DELETE NOTIFICATION */
 
-    this.translate.use('hi');
+  deleteNotification(id:any){
+
+    this.notificationService
+    .deleteNotification(id)
+    .subscribe(()=>{
+
+      this.getAllNotifications();
+
+    });
 
   }
 
-  else if(language === 'Telugu'){
+  /* PUSH NOTIFICATION */
 
-    this.translate.use('te');
+  requestNotificationPermission(){
+
+    if("Notification" in window){
+
+      Notification.requestPermission();
+
+    }
 
   }
 
-}
 }

@@ -1,0 +1,268 @@
+<div class="route-container">
+
+    <h1>
+        Route Planner
+    </h1>
+
+    <!-- INPUT SECTION -->
+
+    <div class="input-section">
+
+        <input type="text"
+               placeholder="Start Location"
+               [(ngModel)]="start">
+
+        <input type="text"
+               placeholder="Destination"
+               [(ngModel)]="destination">
+
+        <button (click)="showRoute()">
+
+            Show Route
+
+        </button>
+
+        <button (click)="saveRoute()">
+
+            Save Route
+
+        </button>
+
+    </div>
+
+    <!-- WAYPOINTS -->
+
+    <div class="waypoint-section">
+
+        <h3>
+            Waypoints
+        </h3>
+
+        <div class="waypoint-card"
+             *ngFor="let point of waypoints; let i = index">
+
+            <span>
+
+                Stop {{i+1}}
+
+            </span>
+
+            <input type="text"
+                   [(ngModel)]="waypoints[i]"
+                   placeholder="Enter Waypoint">
+
+        </div>
+
+    </div>
+
+    <!-- MAP -->
+
+    <div class="map-wrapper">
+
+        <div id="map"></div>
+
+    </div>
+
+    <!-- ROUTE DETAILS -->
+
+    <div class="route-details">
+
+        <h2>
+            Route Details
+        </h2>
+
+        <p>
+
+            <strong>Distance:</strong>
+
+            {{distance}}
+
+        </p>
+
+        <p>
+
+            <strong>Estimated Time:</strong>
+
+            {{travelTime}}
+
+        </p>
+
+        <p>
+
+            <strong>Traffic:</strong>
+
+            {{trafficStatus}}
+
+        </p>
+
+        <p>
+
+            <strong>Delay:</strong>
+
+            {{delayMessage}}
+
+        </p>
+
+    </div>
+
+    <!-- ROUTE COMPARISON TABLE -->
+
+    <div class="comparison-table">
+
+        <h2>
+            Route Comparison
+        </h2>
+
+        <table>
+
+            <tr>
+
+                <th>Route</th>
+
+                <th>Distance</th>
+
+                <th>Time</th>
+
+                <th>Traffic</th>
+
+            </tr>
+
+            <tr *ngFor="let route of alternativeRoutes">
+
+                <td>{{route.route}}</td>
+
+                <td>{{route.distance}}</td>
+
+                <td>{{route.time}}</td>
+
+                <td>{{route.traffic}}</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- ALTERNATIVE ROUTES -->
+
+    <div class="comparison-section">
+
+        <h2>
+            Alternative Routes
+        </h2>
+
+        <div class="comparison-card"
+             *ngFor="let route of alternativeRoutes">
+
+            <div class="route-header">
+
+                <h3>
+                    {{route.route}}
+                </h3>
+
+                <span class="status-badge"
+                      [ngClass]="{
+
+                        'low':
+                        route.traffic.includes('Low'),
+
+                        'moderate':
+                        route.traffic.includes('Moderate'),
+
+                        'heavy':
+                        route.traffic.includes('Heavy')
+
+                      }">
+
+                    {{route.traffic}}
+
+                </span>
+
+            </div>
+
+            <p>
+
+                <strong>Distance:</strong>
+
+                {{route.distance}}
+
+            </p>
+
+            <p>
+
+                <strong>Time:</strong>
+
+                {{route.time}}
+
+            </p>
+
+            <p>
+
+                <strong>Traffic:</strong>
+
+                {{route.traffic}}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- SAVED ROUTES -->
+
+    <div class="saved-routes">
+
+        <h2>
+            Saved Routes
+        </h2>
+
+        <div class="route-card"
+             *ngFor="let route of savedRoutes">
+<button
+(click)="deleteRoute(route._id)">
+
+    Delete Route
+
+</button>
+            <p>
+
+                <strong>From:</strong>
+
+                {{route.start}}
+
+            </p>
+
+            <p>
+
+                <strong>To:</strong>
+
+                {{route.destination}}
+
+            </p>
+
+            <p>
+
+                <strong>Distance:</strong>
+
+                {{route.distance}}
+
+            </p>
+
+            <p>
+
+                <strong>Time:</strong>
+
+                {{route.travelTime}}
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+<button (click)="clearRoute()">
+
+    Clear Route
+
+</button>
