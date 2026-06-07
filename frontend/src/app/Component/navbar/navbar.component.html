@@ -91,11 +91,20 @@
 
 
 <a routerLink="/community">Community</a>
-<button class="notification-btn"
-        routerLink="/notification">
-
-     Notifications
-
+<button
+  class="notification-btn"
+  routerLink="/notification"
+  style="
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 500;
+    cursor: pointer;
+  "
+>
+  Notifications
 </button>
 <a routerLink="/route-planner">
 
@@ -103,4 +112,11 @@
 
 </a>
 
+
 </nav>
+<button
+  type="button"
+  class="theme-toggle-btn"
+  (click)="toggleTheme(); $event.stopPropagation()">
+  {{ isDarkMode ? '☀️' : '🌙' }}
+</button>

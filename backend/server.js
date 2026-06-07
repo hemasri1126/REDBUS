@@ -299,7 +299,13 @@ server.listen(5000,()=>{
     console.log("Server running on port 5000");
 
 });
+
 const routeRoutes =
 require('./routes/routeRoutes');
 
-app.use('/routes',routeRoutes);
+app.use('/routes', routeRoutes);
+
+const reviewRoutes =
+require('./routes/reviewRoutes');
+
+app.use('/reviews', reviewRoutes);

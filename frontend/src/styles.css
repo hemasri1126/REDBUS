@@ -1,13 +1,416 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file */
+
+@import "leaflet/dist/leaflet.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "leaflet/dist/leaflet.css";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-::-webkit-scrollbar{
-    background: white;
-    width: 0;
+
+/* GLOBAL */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: #222;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: white;
+}
+
+/* ============================= */
+/* DARK MODE */
+/* ============================= */
+
+body.dark-theme {
+  background: #121212 !important;
+  color: white !important;
+}
+
+/* page wrappers */
+
+body.dark-theme app-root,
+body.dark-theme .container,
+body.dark-theme .route-container,
+body.dark-theme .notification-container,
+body.dark-theme .community-container,
+body.dark-theme .profile-container,
+body.dark-theme .payment-container {
+  background: #121212 !important;
+  color: white !important;
+}
+
+/* cards */
+
+body.dark-theme .card,
+body.dark-theme .route-card,
+body.dark-theme .notification-card,
+body.dark-theme .comparison-card,
+body.dark-theme .saved-routes,
+body.dark-theme .route-details,
+body.dark-theme .community-post,
+body.dark-theme .post-card,
+body.dark-theme .post-container,
+body.dark-theme .stats-card,
+body.dark-theme .comment-box {
+  background: #1e1e1e !important;
+  color: white !important;
+  border: 1px solid #333 !important;
+}
+
+/* navbar */
+
+body.dark-theme nav,
+body.dark-theme header,
+body.dark-theme footer,
+body.dark-theme .navbar {
+  background: #1a1a1a !important;
+  color: white !important;
+}
+
+/* navbar text */
+
+body.dark-theme nav a,
+body.dark-theme nav span,
+body.dark-theme nav p,
+body.dark-theme .navbar a,
+body.dark-theme .navbar span {
+  color: white !important;
+}
+
+/* navbar icons */
+
+body.dark-theme nav i,
+body.dark-theme nav svg,
+body.dark-theme nav mat-icon,
+body.dark-theme .material-icons {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+/* small nav images */
+
+body.dark-theme nav img {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* keep logo normal */
+
+body.dark-theme .logo img,
+body.dark-theme .navbar-brand img {
+  filter: none !important;
+}
+
+/* ============================= */
+/* INPUTS */
+/* ============================= */
+
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+  background: #2a2a2a !important;
+  color: white !important;
+  border: 1px solid #555 !important;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #bdbdbd !important;
+}
+
+/* FROM + TO WHITE BOX */
+
+body.dark-theme .from-input,
+body.dark-theme .to-input,
+body.dark-theme input[type="text"] {
+  background: #ffffff !important;
+  color: #121212 !important;
+  border: none !important;
+}
+
+/* ============================= */
+/* BUTTONS */
+/* ============================= */
+
+body.dark-theme button {
+  color: white !important;
+}
+
+body.dark-theme .btn-light,
+body.dark-theme button.bg-white,
+body.dark-theme button.bg-light {
+  background: white !important;
+  color: #121212 !important;
+}
+
+/* ============================= */
+/* TEXT */
+/* ============================= */
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5,
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme label {
+  color: white !important;
+}
+
+/* white box text black */
+
+body.dark-theme .bg-white,
+body.dark-theme .bg-light,
+body.dark-theme .comment,
+body.dark-theme .faq-item,
+body.dark-theme .accordion-body,
+body.dark-theme .review {
+  color: #121212 !important;
+}
+
+body.dark-theme .bg-white *,
+body.dark-theme .bg-light *,
+body.dark-theme .comment *,
+body.dark-theme .faq-item *,
+body.dark-theme .accordion-body *,
+body.dark-theme .review * {
+  color: #121212 !important;
+}
+
+/* ============================= */
+/* THEME TOGGLE */
+/* ============================= */
+
+.theme-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  color: #121212;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+body.dark-theme .theme-toggle-btn {
+  background: #2a2a2a;
+  color: white;
+}
+
+/* ============================= */
+/* AUTOCOMPLETE DROPDOWN */
+/* ============================= */
+
+/* dropdown background */
+
+body.dark-theme .cdk-overlay-container .mat-mdc-autocomplete-panel,
+body.dark-theme .cdk-overlay-container .mat-autocomplete-panel {
+  background: #ffffff !important;
+}
+
+/* option row */
+
+body.dark-theme .cdk-overlay-container .mat-mdc-option,
+body.dark-theme .cdk-overlay-container mat-option {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* place names black */
+
+body.dark-theme .cdk-overlay-container .mdc-list-item__primary-text,
+body.dark-theme .cdk-overlay-container .mat-mdc-option span,
+body.dark-theme .cdk-overlay-container mat-option span {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* hover */
+
+body.dark-theme .cdk-overlay-container .mat-mdc-option:hover {
+  background: #f3f3f3 !important;
+}
+/* TOP RIGHT BUTTONS FIX */
+
+body.dark-theme a[href*="community"],
+body.dark-theme a[href*="Notifications"],
+body.dark-theme a[href*="route-planner"],
+body.dark-theme button[href*="community"],
+body.dark-theme button[href*="Notifications"],
+body.dark-theme button[href*="route-planner"]{
+
+  background:#ffffff !important;
+  color:#121212 !important;
+  border-radius:8px;
+  padding:8px 14px;
+  font-weight:500;
+  border:none;
+
+}
+
+/* text inside buttons */
+body.dark-theme a[href*="community"] *,
+body.dark-theme a[href*="Notifications"] *,
+body.dark-theme a[href*="route-planner"] *{
+
+  color:#121212 !important;
+
 }
 
 
+
+body.dark-theme .bus-ticket,
+body.dark-theme .cab-rental,
+body.dark-theme .train-ticket,
+body.dark-theme nav a,
+body.dark-theme nav span {
+
+  color: #ffffff !important;
+
+}
+
+/* keep bus/cab/train icons visible */
+body.dark-theme nav img {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Google sign-in button visible */
+body.dark-theme #google-btn,
+body.dark-theme .google-signin-btn,
+body.dark-theme .g_id_signin {
+  background: white !important;
+  color: black !important;
+  opacity: 1 !important;
+}
+/* COMMUNITY PAGE BUTTON TEXT FIX */
+
+body.dark-theme .like-btn,
+body.dark-theme .share-btn,
+body.dark-theme .save-btn,
+body.dark-theme .edit-btn,
+body.dark-theme .report-btn,
+body.dark-theme .likes-count {
+
+  color: #000000 !important;
+
+}
+
+/* comment input text */
+body.dark-theme input,
+body.dark-theme textarea {
+  color: #000000 !important;
+}
+
+/* placeholder text */
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #666666 !important;
+}
+
+/* comment list text like Nice / Good */
+body.dark-theme .comment-item,
+body.dark-theme .comment-box p,
+body.dark-theme .comment-box span {
+  color: #000000 !important;
+}
+
+/* Comment button text */
+body.dark-theme .comment-btn{
+  color:#ffffff !important;
+}
+/* VERIFIED BADGE TEXT FIX */
+
+body.dark-theme .verified-badge,
+body.dark-theme .verified,
+body.dark-theme .badge,
+body.dark-theme .badge span{
+
+  color:#000000 !important;
+  background:#ffffff !important;
+
+}
+/* FIX LIKE COUNT BUTTON TEXT */
+
+body.dark-theme button:nth-child(2) {
+  color: #000 !important;
+}
+
+body.dark-theme button:nth-child(2) span {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+/* TRAVEL DISCUSSION FORUM CARDS TEXT FIX */
+
+body.dark-theme .forum-card,
+body.dark-theme .discussion-card,
+body.dark-theme .travel-card{
+  background:#ffffff !important;
+}
+
+/* title inside cards */
+body.dark-theme .forum-card h2,
+body.dark-theme .forum-card h3,
+body.dark-theme .discussion-card h2,
+body.dark-theme .discussion-card h3,
+body.dark-theme .travel-card h2,
+body.dark-theme .travel-card h3{
+  color:#000000 !important;
+}
+
+/* description inside cards */
+body.dark-theme .forum-card p,
+body.dark-theme .discussion-card p,
+body.dark-theme .travel-card p{
+  color:#333333 !important;
+}
+/* NOTIFICATION PREFERENCES LABELS FIX */
+
+body.dark-theme .mat-mdc-slide-toggle-label,
+body.dark-theme .mat-mdc-checkbox-label,
+body.dark-theme .mdc-label,
+body.dark-theme .mat-mdc-form-field label,
+body.dark-theme .notification-preferences h2,
+body.dark-theme .notification-preferences h3,
+body.dark-theme .notification-preferences span,
+body.dark-theme .notification-preferences p,
+body.dark-theme .preferences-container span,
+body.dark-theme .preferences-container p,
+body.dark-theme .language-section label {
+
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+
+}
+
+/* dropdown text */
+body.dark-theme select,
+body.dark-theme option{
+  color:#000000 !important;
+  background:#ffffff !important;
+}
+.notification-preferences,
+.notification-preferences h2,
+.notification-preferences label,
+.notification-preferences span,
+.preferences-container label,
+.preferences-container span,
+.language-section label {
+  color: rgb(175, 23, 23) !important;
+}

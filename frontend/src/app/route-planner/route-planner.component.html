@@ -54,7 +54,12 @@
         </div>
 
     </div>
+<button
+(click)="addWaypoint()">
 
+  Add Waypoint
+
+</button>
     <!-- MAP -->
 
     <div class="map-wrapper">
@@ -66,7 +71,13 @@
     <!-- ROUTE DETAILS -->
 
     <div class="route-details">
+<p>
 
+  <strong>Estimated Fare:</strong>
+
+  {{estimatedFare}}
+
+</p>
         <h2>
             Route Details
         </h2>
@@ -218,6 +229,12 @@
 
         <div class="route-card"
              *ngFor="let route of savedRoutes">
+             <button
+(click)="toggleFavorite(route)">
+
+  {{route.favorite ? '★ Favorited' : '☆ Add to Favorites'}}
+
+</button>
 <button
 (click)="deleteRoute(route._id)">
 
@@ -266,3 +283,105 @@
     Clear Route
 
 </button>
+<div class="review-section">
+
+  <h2>Rate & Review Route</h2>
+
+  <div class="rating-box">
+
+    <label>Rating (1–5)</label>
+
+    <select [(ngModel)]="rating">
+
+      <option [value]="1">1 ⭐</option>
+      <option [value]="2">2 ⭐⭐</option>
+      <option [value]="3">3 ⭐⭐⭐</option>
+      <option [value]="4">4 ⭐⭐⭐⭐</option>
+      <option [value]="5">5 ⭐⭐⭐⭐⭐</option>
+
+    </select>
+
+  </div>
+
+  <textarea
+    [(ngModel)]="reviewText"
+    placeholder="Write your review..."
+    rows="4">
+  </textarea>
+
+  <button (click)="submitReview()">
+    Submit Review
+  </button>
+
+  <h3 class="average-rating">
+  Average Rating:
+  {{averageRating | number:'1.1-1'}} ⭐
+</h3>
+    <div
+  class="review-card"
+  *ngFor="let review of reviews">
+
+  <p>
+
+    <strong>{{review.userName}}</strong>
+
+    <span
+      *ngIf="review.trustedReviewer"
+      class="trusted-badge">
+
+      ⭐ Trusted Reviewer
+
+    </span>
+
+  </p>
+
+  <p>
+    ⭐ {{review.rating}}
+  </p>
+
+  <p>
+    {{review.review}}
+  </p>
+
+  <p *ngIf="review.verified">
+    ✔ Verified User
+  </p>
+
+  <p>
+    👍 Helpful Votes:
+    {{review.upvotes || 0}}
+  </p>
+
+  <button
+    class="helpful-btn"
+    (click)="upvoteReview(review)">
+
+    👍 Helpful
+
+  </button>
+
+  <button
+    class="edit-review-btn"
+    (click)="editReview(review)">
+
+    Edit Review
+
+  </button>
+
+  <button
+    class="report-btn"
+    (click)="reportReview(review)">
+
+    Report
+
+  </button>
+<button
+  class="delete-review-btn"
+  (click)="deleteReview(review)">
+
+  Delete
+
+</button>
+</div>
+
+</div>
