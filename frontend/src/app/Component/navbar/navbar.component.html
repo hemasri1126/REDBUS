@@ -111,40 +111,62 @@
 
 
 
+<div class="navbar-actions">
+
+  <!-- Dark Mode -->
+
+  <button
+    type="button"
+    class="theme-toggle-btn"
+    (click)="toggleTheme()">
+
+    {{ isDarkMode ? '☀️' : '🌙' }}
+
+  </button>
+
+  <!-- Community -->
+
+  <button
+    class="nav-btn"
+    routerLink="/community">
+
+    {{languageService.get('community')}}
+
+  </button>
+
+  <!-- Notifications -->
+
+  <button
+    class="nav-btn"
+    routerLink="/notification">
+
+    {{languageService.get('notifications')}}
+
+  </button>
+
+  <!-- Route Planner -->
+
+  <button
+    class="nav-btn"
+    routerLink="/route-planner">
+
+    {{languageService.get('routePlanner')}}
+
+  </button>
+
+  <!-- Language -->
+
+  <select
+    class="language-select"
+    [(ngModel)]="languageService.currentLanguage"
+    (change)="changeLanguage($event)">
+
+    <option value="English">English</option>
+    <option value="Hindi">हिन्दी</option>
+    <option value="Telugu">తెలుగు</option>
+
+  </select>
+
+</div>
 
 </nav>
-<button
-  type="button"
-  class="theme-toggle-btn"
-  (click)="toggleTheme(); $event.stopPropagation()">
-  {{ isDarkMode ? '☀️' : '🌙' }}
-</button>
-<select
-  [value]="languageService.currentLanguage"
-  (change)="changeLanguage($event)">
-  style="
-    padding:6px;
-    border-radius:6px;
-    margin-left:10px;
-  ">
-
-  <option>English</option>
-  <option>Hindi</option>
-  <option>Telugu</option>
-
-</select>
-<a routerLink="/community">
-  {{languageService.get('community')}}
-</a>
-
-<button
-  class="notification-btn"
-  routerLink="/notification">
-
-  {{languageService.get('notifications')}}
-
-</button>
-
-<a routerLink="/route-planner">
-  {{languageService.get('routePlanner')}}
-</a>

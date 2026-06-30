@@ -9,8 +9,7 @@ export class LanguageService {
   currentLanguage =
     localStorage.getItem('language') || 'English';
 
-  translations:any = {
-
+  translations: any = {
     English:{
       community:'Community',
       notifications:'Notifications',
@@ -97,7 +96,16 @@ savedRoutes:'Saved Routes',
 routeComparison:'Route Comparison',
 rateReview:'Rate & Review Route',
 submitReview:'Submit Review',
-averageRating:'Average Rating'
+averageRating:'Average Rating',
+estimatedFare: 'Estimated Fare',
+distance: 'Distance',
+estimatedTime: 'Estimated Time',
+traffic: 'Traffic',
+delay: 'Delay',
+stop:'Stop',
+time:'Time',
+deleteRoute:'Delete Route',
+savePreferences:'Save Preferences',
     },
 
     Hindi:{
@@ -191,6 +199,15 @@ searchBuses:"बस खोजें",
 trendingOffers:"लोकप्रिय ऑफर",
 
 viewAll:"सभी देखें",
+estimatedFare:'अनुमानित किराया',
+distance:'दूरी',
+estimatedTime:'अनुमानित समय',
+traffic:'यातायात',
+delay:'देरी',
+stop:'स्टॉप',
+time:'समय',
+deleteRoute:'मार्ग हटाएं',
+savePreferences:'प्राथमिकताएँ सहेजें',
     },
 
     Telugu:{
@@ -284,6 +301,15 @@ searchBuses:"బస్సులు వెతకండి",
 trendingOffers:"ట్రెండింగ్ ఆఫర్లు",
 
 viewAll:"అన్నీ చూడండి",
+estimatedFare:'అంచనా చార్జీ',
+distance:'దూరం',
+estimatedTime:'అంచనా సమయం',
+traffic:'ట్రాఫిక్',
+delay:'ఆలస్యం',
+stop:'స్టాప్',
+time:'సమయం',
+deleteRoute:'మార్గాన్ని తొలగించండి',
+savePreferences:'ప్రాధాన్యతలను సేవ్ చేయండి',
     }
     
 

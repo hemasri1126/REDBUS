@@ -18,13 +18,7 @@ export class NavbarComponent implements OnInit {
   private customerservice:CustomerService,
   public languageService:LanguageService
 ){}
-changeLanguage(event:any){
 
-  this.languageService.changeLanguage(
-    event.target.value
-  );
-
-}
   isloggedIn:boolean = false;
 
   isDarkMode = false;
@@ -149,7 +143,13 @@ changeLanguage(event:any){
     this.router.navigate([route]);
 
   }
+changeLanguage(event:any){
 
+  this.languageService.changeLanguage(
+    event.target.value
+  );
+
+}
   /* DARK MODE TOGGLE */
 
   toggleTheme(){

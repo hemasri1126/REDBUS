@@ -47,17 +47,19 @@
 
             </span>
 
-            <input type="text"
-                   [(ngModel)]="waypoints[i]"
-                   placeholder="Enter Waypoint">
+           <input
+    type="text"
+    [(ngModel)]="waypoints[i]"
+    [placeholder]="languageService.get('enterWaypoint')">
 
-        </div>
+      
 
     </div>
+
 <button
 (click)="addWaypoint()">
 
-  {{languageService.get('addWaypoint')}}`
+ {{languageService.get('addWaypoint')}}
 
 </button>
     <!-- MAP -->
@@ -73,7 +75,7 @@
     <div class="route-details">
 <p>
 
-  <strong>Estimated Fare:</strong>
+  <strong>{{languageService.get('estimatedFare')}}:</strong>
 
   {{estimatedFare}}
 
@@ -84,7 +86,7 @@
 
         <p>
 
-            <strong>Distance:</strong>
+            <strong>{{languageService.get('distance')}}:</strong>
 
             {{distance}}
 
@@ -92,7 +94,7 @@
 
         <p>
 
-            <strong>Estimated Time:</strong>
+            <strong> {{languageService.get('estimatedTime')}}:</strong>
 
             {{travelTime}}
 
@@ -100,7 +102,7 @@
 
         <p>
 
-            <strong>Traffic:</strong>
+            <strong>{{languageService.get('traffic')}}:</strong>
 
             {{trafficStatus}}
 
@@ -108,7 +110,7 @@
 
         <p>
 
-            <strong>Delay:</strong>
+            <strong>{{languageService.get('delay')}}:</strong>
 
             {{delayMessage}}
 
@@ -128,13 +130,10 @@
 
             <tr>
 
-                <th>Route</th>
-
-                <th>Distance</th>
-
-                <th>Time</th>
-
-                <th>Traffic</th>
+              <th>{{languageService.get('route')}}</th>
+<th>{{languageService.get('distance')}}</th>
+<th>{{languageService.get('time')}}</th>
+<th>{{languageService.get('traffic')}}</th>
 
             </tr>
 
@@ -193,7 +192,7 @@
 
             <p>
 
-                <strong>Distance:</strong>
+                <strong>{{languageService.get('distance')}}:</strong>
 
                 {{route.distance}}
 
@@ -201,7 +200,7 @@
 
             <p>
 
-                <strong>Time:</strong>
+                <strong>{{languageService.get('time')}}:</strong>
 
                 {{route.time}}
 
@@ -209,7 +208,7 @@
 
             <p>
 
-                <strong>Traffic:</strong>
+                <strong>{{languageService.get('traffic')}}:</strong>
 
                 {{route.traffic}}
 
@@ -243,7 +242,7 @@
 </button>
             <p>
 
-                <strong>From:</strong>
+                <strong>{{languageService.get('from')}}:</strong>
 
                 {{route.start}}
 
@@ -251,7 +250,7 @@
 
             <p>
 
-                <strong>To:</strong>
+                <strong>{{languageService.get('to')}}:</strong>
 
                 {{route.destination}}
 
@@ -259,7 +258,7 @@
 
             <p>
 
-                <strong>Distance:</strong>
+                <strong>{{languageService.get('distance')}}:</strong>
 
                 {{route.distance}}
 
@@ -267,7 +266,7 @@
 
             <p>
 
-                <strong>Time:</strong>
+                <strong>{{languageService.get('time')}}:</strong>
 
                 {{route.travelTime}}
 

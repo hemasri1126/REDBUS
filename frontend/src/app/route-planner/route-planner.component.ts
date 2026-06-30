@@ -6,7 +6,7 @@ import {
 import { ReviewService }
 from '../services/review.service';
 import * as L from 'leaflet';
-import { LanguageService } from '../services/Language.service';
+import { LanguageService } from '../services/language.service';
 import { RoutePlannerService }
 from '../services/route-planner.service';
 

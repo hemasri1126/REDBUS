@@ -34,7 +34,7 @@ export class NotificationComponent {
   ngOnInit(){
 
     this.getAllNotifications();
-
+this.loadPreferences();
     this.requestNotificationPermission();
 
     const savedLanguage =
@@ -416,5 +416,46 @@ createScheduleNotification(){
   });
 
 }
+savePreferences(){
 
+localStorage.setItem(
+'emailNotifications',
+JSON.stringify(this.emailEnabled)
+);
+
+localStorage.setItem(
+'pushNotifications',
+JSON.stringify(this.pushEnabled)
+);
+
+localStorage.setItem(
+'promoNotifications',
+JSON.stringify(this.promoEnabled)
+);
+
+alert('Preferences Saved');
+
+}
+
+loadPreferences(){
+
+const email =
+localStorage.getItem('emailNotifications');
+
+const push =
+localStorage.getItem('pushNotifications');
+
+const promo =
+localStorage.getItem('promoNotifications');
+
+if(email!==null)
+this.emailEnabled=JSON.parse(email);
+
+if(push!==null)
+this.pushEnabled=JSON.parse(push);
+
+if(promo!==null)
+this.promoEnabled=JSON.parse(promo);
+
+}
 }
