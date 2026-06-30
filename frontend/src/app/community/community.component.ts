@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommunityService } from '../services/community.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-community',
@@ -9,7 +10,10 @@ import { CommunityService } from '../services/community.service';
 
 export class CommunityComponent {
 
-  constructor(private communityService: CommunityService) {}
+  constructor(
+  private communityService: CommunityService,
+  public languageService: LanguageService
+) {}
 
   hashtags = '';
 
@@ -242,14 +246,28 @@ export class CommunityComponent {
 
   /* REPORT POST */
 
-  reportPost(post:any){
+ reportPost(post:any){
 
-    post.reported = !post.reported;
+  post.reportCount =
+  (post.reportCount || 0) + 1;
 
-    this.communityService.updatePost(post._id,post)
-    .subscribe();
+  post.reported = true;
+
+  if(post.reportCount >= 3){
+
+    post.hidden = true;
+
+    alert(
+      'Post removed due to multiple reports'
+    );
 
   }
+
+  this.communityService
+  .updatePost(post._id,post)
+  .subscribe();
+
+}
 
   /* TRENDING */
 

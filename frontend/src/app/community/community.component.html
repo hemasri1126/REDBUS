@@ -8,7 +8,7 @@
         <div>
 
             <h1 class="community-title">
-                Travel Community
+               {{languageService.get('travelCommunity')}}
             </h1>
 
             <p class="community-subtitle">
@@ -43,22 +43,22 @@
 
         <div class="stats-card">
             <h2>{{posts.length}}</h2>
-            <p>Total Posts</p>
+          <p>{{languageService.get('totalPosts')}}</p>
         </div>
 
         <div class="stats-card">
             <h2>{{getTotalLikes()}}</h2>
-            <p>Total Likes</p>
+            <p>{{languageService.get('totalLikes')}}</p>
         </div>
 
         <div class="stats-card">
             <h2>{{getTotalComments()}}</h2>
-            <p>Comments</p>
+            <p>{{languageService.get('comment')}}</p>
         </div>
 
         <div class="stats-card">
             <h2>24+</h2>
-            <p>Popular Routes</p>
+            <p>{{languageService.get('popularRoutes')}}</p>
         </div>
 
     </div>
@@ -67,7 +67,7 @@
 
     <button class="create-btn"
             (click)="toggleForm()">
-        Create Post
+       {{languageService.get('createPost')}}
     </button>
 
     <!-- FORM -->
@@ -118,9 +118,9 @@
     </div>
 
     <!-- POSTS -->
-
-    <div class="post-card"
-         *ngFor="let post of filteredPosts(); let i = index">
+<div class="post-card"
+     *ngFor="let post of filteredPosts(); let i = index"
+     [hidden]="post.hidden">
 
         <!-- HEADER -->
 
@@ -139,21 +139,23 @@
 
                         <span class="verified-badge"
                               *ngIf="isVerifiedUser">
-                            Verified
+                          {{languageService.get('verified')}}
                         </span>
                     </h3>
 
                     <p class="post-time">
-                        Posted recently
+                        {{languageService.get('postedRecently')}}
                     </p>
 
-                    <button class="follow-btn"
-                            type="button"
-                            (click)="toggleFollow(post)">
+                 <button class="follow-btn"
+        type="button"
+        (click)="toggleFollow(post)">
 
-                        {{ post.following ? 'Following' : 'Follow' }}
+    {{ post.following
+       ? languageService.get('following')
+       : languageService.get('follow') }}
 
-                    </button>
+</button>
 
                 </div>
 
@@ -162,7 +164,7 @@
             <button class="delete-btn"
                     type="button"
                     (click)="deletePost(post._id)">
-                Delete
+              {{languageService.get('delete')}}
             </button>
 
         </div>
@@ -177,7 +179,7 @@
 
         <div class="trending-badge"
              *ngIf="isTrending(post)">
-            Trending
+           {{languageService.get('trending')}}
         </div>
 
         <!-- IMAGE -->
@@ -201,7 +203,7 @@
         <!-- ROUTE -->
 
         <h4 class="route-text">
-            Route : {{post.route}}
+            {{languageService.get('route')}} : {{post.route}}
         </h4>
 
         <!-- REPORTED -->
@@ -218,41 +220,47 @@
             <button class="like-btn"
                     type="button"
                     (click)="likePost(post)">
-                Like
+                {{languageService.get('like')}}
             </button>
 
             <button class="comment-btn-small"
                     type="button">
-                {{post.likes}} Likes
+                {{post.likes}} {{languageService.get('likes')}}
             </button>
 
-            <button class="share-btn"
-                    type="button"
-                    (click)="sharePost(post)">
-                Share
-            </button>
+         <button class="share-btn"
+        type="button"
+        (click)="sharePost(post)">
 
-            <button class="save-btn"
-                    type="button"
-                    (click)="toggleSave(post)">
+    {{languageService.get('share')}}
 
-                {{ post.saved ? 'Saved' : 'Save' }}
+</button>
 
-            </button>
+         <button class="save-btn"
+        type="button"
+        (click)="toggleSave(post)">
+
+    {{ post.saved
+       ? languageService.get('saved')
+       : languageService.get('save') }}
+
+</button>
 
             <button class="edit-btn"
                     type="button"
                     (click)="editPost(post,i)">
-                Edit
+              {{languageService.get('edit')}}
             </button>
 
-            <button class="report-btn"
-                    type="button"
-                    (click)="reportPost(post)">
+           <button class="report-btn"
+        type="button"
+        (click)="reportPost(post)">
 
-                {{ post.reported ? 'Remove Report' : 'Report' }}
+    {{ post.reported
+       ? languageService.get('removeReport')
+       : languageService.get('report') }}
 
-            </button>
+</button>
 
         </div>
 
@@ -265,11 +273,13 @@
                    placeholder="Write a comment"
                    [(ngModel)]="post.newComment">
 
-            <button class="comment-btn"
-                    type="button"
-                    (click)="addComment(post)">
-                Comment
-            </button>
+      <button class="comment-btn"
+        type="button"
+        (click)="addComment(post)">
+
+    {{languageService.get('comment')}}
+
+</button>
 
         </div>
 
@@ -290,7 +300,7 @@
     <div class="forum-section">
 
         <h2 class="forum-heading">
-            Travel Discussion Forums
+           {{languageService.get('travelForums')}}
         </h2>
 
         <div class="forum-container">
@@ -307,7 +317,7 @@
                 </p>
 
                 <button class="join-btn">
-                    Join Discussion
+                    {{languageService.get('joinDiscussion')}}
                 </button>
 
             </div>

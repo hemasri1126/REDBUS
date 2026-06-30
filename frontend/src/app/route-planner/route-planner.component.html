@@ -1,7 +1,7 @@
 <div class="route-container">
 
     <h1>
-        Route Planner
+      {{languageService.get('routePlanner')}}
     </h1>
 
     <!-- INPUT SECTION -->
@@ -9,22 +9,22 @@
     <div class="input-section">
 
         <input type="text"
-               placeholder="Start Location"
+             [placeholder]="languageService.get('startLocation')"
                [(ngModel)]="start">
 
         <input type="text"
-               placeholder="Destination"
+             [placeholder]="languageService.get('destination')"
                [(ngModel)]="destination">
 
         <button (click)="showRoute()">
 
-            Show Route
+      {{languageService.get('showRoute')}}
 
         </button>
 
         <button (click)="saveRoute()">
 
-            Save Route
+            {{languageService.get('saveRoute')}}
 
         </button>
 
@@ -35,7 +35,7 @@
     <div class="waypoint-section">
 
         <h3>
-            Waypoints
+            {{languageService.get('waypoints')}}
         </h3>
 
         <div class="waypoint-card"
@@ -57,7 +57,7 @@
 <button
 (click)="addWaypoint()">
 
-  Add Waypoint
+  {{languageService.get('addWaypoint')}}`
 
 </button>
     <!-- MAP -->
@@ -79,7 +79,7 @@
 
 </p>
         <h2>
-            Route Details
+            {{languageService.get('routeDetails')}}
         </h2>
 
         <p>
@@ -121,7 +121,7 @@
     <div class="comparison-table">
 
         <h2>
-            Route Comparison
+         {{languageService.get('routeComparison')}}
         </h2>
 
         <table>
@@ -159,7 +159,7 @@
     <div class="comparison-section">
 
         <h2>
-            Alternative Routes
+            {{languageService.get('alternativeRoutes')}}
         </h2>
 
         <div class="comparison-card"
@@ -224,7 +224,7 @@
     <div class="saved-routes">
 
         <h2>
-            Saved Routes
+            {{languageService.get('savedRoutes')}}
         </h2>
 
         <div class="route-card"
@@ -280,12 +280,12 @@
 </div>
 <button (click)="clearRoute()">
 
-    Clear Route
+    {{languageService.get('clearRoute')}}
 
 </button>
 <div class="review-section">
 
-  <h2>Rate & Review Route</h2>
+  <h2>{{languageService.get('rateReview')}}</h2>
 
   <div class="rating-box">
 
@@ -310,11 +310,11 @@
   </textarea>
 
   <button (click)="submitReview()">
-    Submit Review
+   {{languageService.get('submitReview')}}
   </button>
 
   <h3 class="average-rating">
-  Average Rating:
+{{languageService.get('averageRating')}}:
   {{averageRating | number:'1.1-1'}} ⭐
 </h3>
     <div

@@ -157,41 +157,73 @@ app.post('/notifications',async(req,res)=>{
 
         /* SEND EMAIL */
 
-        const info = await transporter.sendMail({
+    let emailSent = false;
 
-            from:'hemashri1126@gmail.com',
+let retries = 3;
 
-            to:'hemashri1126@gmail.com',
+while(!emailSent && retries > 0){
 
-            subject:notification.title,
+  try{
 
-            html: `
-            
-            <div style="font-family:Arial;padding:20px;">
+    await transporter.sendMail({
 
-                <h2 style="color:#d84e55;">
-                    ${notification.title}
-                </h2>
+      from:'hemashri1126@gmail.com',
 
-                <p style="font-size:16px;">
-                    ${notification.message}
-                </p>
+      to:'hemashri1126@gmail.com',
 
-                <hr>
+      subject:notification.title,
 
-                <p>
-                    Thank you for choosing TedBus.
-                </p>
+      html:`
 
-            </div>
+      <div style="font-family:Arial;padding:20px;">
 
-            `
+      <h2>${notification.title}</h2>
 
-        });
+      <p>${notification.message}</p>
 
-        console.log(info);
+      </div>
 
-        res.status(200).json(notification);
+      `
+
+    });
+
+    emailSent = true;
+
+    console.log(
+      'Email Sent Successfully'
+    );
+
+  }
+
+  catch(err){
+
+    retries--;
+
+    console.log(
+      'Retrying Email...',
+      retries
+    );
+
+  }
+
+}
+
+        if(emailSent){
+
+    notification.deliveryStatus =
+    'Delivered';
+
+}
+else{
+
+    notification.deliveryStatus =
+    'Failed';
+
+}
+
+await notification.save();
+
+res.status(200).json(notification);
 
     }
     catch(error){

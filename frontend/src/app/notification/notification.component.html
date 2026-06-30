@@ -37,7 +37,7 @@
 <button class="all-btn"
         (click)="showAllNotifications()">
 
-    Show All
+   {{languageService.get('showAll')}}
 
 </button>
 
@@ -75,10 +75,16 @@
         {{notification.message}}
     </p>
 
-    <p class="time">
-        {{notification.time}}
-    </p>
+   <p class="time">
+    {{notification.time}}
+</p>
 
+<p class="delivery-status">
+
+  {{languageService.get('deliveryStatus')}}:
+  {{notification.deliveryStatus || languageService.get('delivered')}}
+
+</p>
     <button class="read-btn"
             (click)="markAsRead(notification)">
 
@@ -101,7 +107,7 @@
 
 <h2>
 
-    Notification Preferences
+   {{languageService.get('notificationPreferences')}}
 
 </h2>
 
@@ -163,5 +169,17 @@
 </select>
 
 </div>
+<button class="event-btn"
+(click)="createBookingNotification()">
 
+{{languageService.get('bookingConfirmation')}}
+
+</button>
+
+<button class="event-btn"
+(click)="createScheduleNotification()">
+
+{{languageService.get('scheduleChange')}}
+
+</button>
 </div>

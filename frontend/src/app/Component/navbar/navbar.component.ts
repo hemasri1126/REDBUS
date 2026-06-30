@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 declare var google:any;
 
 import { CustomerService } from '../../service/customer.service';
@@ -13,10 +14,17 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   constructor(
-    private router:Router,
-    private customerservice:CustomerService
-  ){}
+  private router:Router,
+  private customerservice:CustomerService,
+  public languageService:LanguageService
+){}
+changeLanguage(event:any){
 
+  this.languageService.changeLanguage(
+    event.target.value
+  );
+
+}
   isloggedIn:boolean = false;
 
   isDarkMode = false;

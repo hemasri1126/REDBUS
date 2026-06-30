@@ -407,10 +407,157 @@ body.dark-theme option{
 }
 .notification-preferences,
 .notification-preferences h2,
+.notification-preferences h3,
 .notification-preferences label,
 .notification-preferences span,
+.notification-preferences p,
 .preferences-container label,
 .preferences-container span,
-.language-section label {
-  color: rgb(175, 23, 23) !important;
+.preferences-container p,
+.language-section label,
+.language-section span {
+
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+
+}
+body.dark-theme .notification-preferences *,
+body.dark-theme .preferences-container *,
+body.dark-theme .language-section * {
+
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+
+}
+/* Dark mode Angular Material Menu */
+/* FROM & TO DROPDOWN FIX */
+
+body.dark-theme .mat-mdc-menu-panel {
+    background: #ffffff !important;
+}
+
+body.dark-theme .mat-mdc-menu-content {
+    background: #ffffff !important;
+}
+
+body.dark-theme .mat-mdc-menu-item {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+body.dark-theme .mat-mdc-menu-item span {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+body.dark-theme button.mat-mdc-menu-item {
+    color: #000000 !important;
+}
+
+body.dark-theme .mat-mdc-menu-item:hover {
+    background: #f3f3f3 !important;
+}
+/* Bus / Cab / Train text visible in dark mode */
+
+body.dark-theme .bus-ticket,
+body.dark-theme .cab-rental,
+body.dark-theme .train-ticket,
+body.dark-theme .bus-ticket *,
+body.dark-theme .cab-rental *,
+body.dark-theme .train-ticket * {
+
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+}
+/* BUS / CAB / TRAIN TEXT FIX */
+
+body.dark-theme nav p {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+body.dark-theme nav a p {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+/******** ROUTE PLANNER DARK MODE FIX ********/
+
+/* Waypoints heading */
+body.dark-theme .waypoint-section h2,
+body.dark-theme .waypoint-section h3,
+body.dark-theme .waypoint-section label {
+    color: #000000 !important;
+}
+
+/* Stop text */
+body.dark-theme .waypoint-card span {
+    color: #000000 !important;
+}
+
+/* Review section heading */
+body.dark-theme .review-section h2 {
+    color: #000000 !important;
+}
+
+/* Rating label */
+body.dark-theme .rating-box label {
+    color: #000000 !important;
+}
+
+/* Review card text */
+body.dark-theme .review-card p,
+body.dark-theme .review-card strong {
+    color: #000000 !important;
+}
+/******** NOTIFICATION PREFERENCES TEXT FIX ********/
+
+body.dark-theme .notification-preferences,
+body.dark-theme .notification-preferences h2,
+body.dark-theme .notification-preferences h3,
+body.dark-theme .notification-preferences label,
+body.dark-theme .notification-preferences span,
+body.dark-theme .notification-preferences p,
+body.dark-theme .preferences-container,
+body.dark-theme .preferences-container label,
+body.dark-theme .preferences-container span,
+body.dark-theme .preferences-container p,
+body.dark-theme .language-section,
+body.dark-theme .language-section label {
+
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    opacity: 1 !important;
+
+}
+/* AVERAGE RATING TEXT FIX */
+
+body.dark-theme .average-rating {
+
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+
+}
+/* NOTIFICATION PREFERENCES TEXT FIX */
+
+body.dark-theme .preferences-section h2,
+body.dark-theme .preferences-section label,
+body.dark-theme .preference-item,
+body.dark-theme .preference-item label {
+
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    opacity: 1 !important;
+
+}
+
+/* language dropdown */
+
+body.dark-theme .preferences-section select,
+body.dark-theme .preferences-section option {
+
+    color: #000000 !important;
+    background: #ffffff !important;
+
 }

@@ -390,3 +390,29 @@ td{
   font-weight:bold;
 
 }
+.dark-mode select,
+.dark-mode input {
+
+  color: #000 !important;
+  background: #fff !important;
+
+}
+.dark-mode option {
+
+  color: #000 !important;
+  background: #fff !important;
+
+}
+.dark-mode select {
+
+  color: black !important;
+  background-color: white !important;
+
+}
+
+.dark-mode option {
+
+  color: black !important;
+  background-color: white !important;
+
+}

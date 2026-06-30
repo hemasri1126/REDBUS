@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NotificationService } from '../services/notification.service';
 import { io } from 'socket.io-client';
-
+import { LanguageService } from '../services/language.service';
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
@@ -11,7 +11,8 @@ import { io } from 'socket.io-client';
 export class NotificationComponent {
 
   constructor(
-    private notificationService:NotificationService
+    private notificationService:NotificationService,
+    public languageService:LanguageService
   ){}
 
   notifications:any[] = [];
@@ -354,5 +355,66 @@ export class NotificationComponent {
     }
 
   }
+
+  /* BOOKING CONFIRMATION */
+
+createBookingNotification(){
+
+  const notification = {
+
+    title:'Booking Confirmed',
+
+    message:
+    'Your bus ticket has been successfully booked.',
+
+    type:'booking',
+
+    status:'unread',
+
+    deliveryStatus:'Delivered',
+
+    time:new Date()
+
+  };
+
+  this.notificationService
+  .createNotification(notification)
+  .subscribe(()=>{
+
+    this.getAllNotifications();
+
+  });
+
+}
+/* SCHEDULE CHANGE */
+
+createScheduleNotification(){
+
+  const notification = {
+
+    title:'Schedule Changed',
+
+    message:
+    'Your departure time has been updated.',
+
+    type:'schedule',
+
+    status:'unread',
+
+    deliveryStatus:'Delivered',
+
+    time:new Date()
+
+  };
+
+  this.notificationService
+  .createNotification(notification)
+  .subscribe(()=>{
+
+    this.getAllNotifications();
+
+  });
+
+}
 
 }

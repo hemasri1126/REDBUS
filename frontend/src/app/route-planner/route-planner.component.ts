@@ -6,7 +6,7 @@ import {
 import { ReviewService }
 from '../services/review.service';
 import * as L from 'leaflet';
-
+import { LanguageService } from '../services/Language.service';
 import { RoutePlannerService }
 from '../services/route-planner.service';
 
@@ -41,11 +41,9 @@ reviews:any[] = [];
 
 averageRating = 0;
 constructor(
-  private routePlannerService:
-  RoutePlannerService,
-
-  private reviewService:
-  ReviewService
+  private routePlannerService: RoutePlannerService,
+  private reviewService: ReviewService,
+  public languageService: LanguageService
 ){}
 
   ngOnInit(): void {
@@ -262,6 +260,39 @@ constructor(
 
 submitReview(){
 
+  const existingReview = this.reviews.find(
+    (item:any)=>
+    item.journeyId ===
+    this.start + '-' +
+    this.destination + '-001'
+  );
+
+  if(existingReview){
+
+    alert('You have already reviewed this journey.');
+
+    return;
+
+  }
+
+  if(this.reviewText.trim().length < 20){
+
+    alert('Review must contain at least 20 characters.');
+
+    return;
+
+  }
+
+  const verifiedUser = true;
+
+  if(!verifiedUser){
+
+    alert('Only verified users can review.');
+
+    return;
+
+  }
+
   const review = {
 
     routeId:
@@ -281,7 +312,7 @@ submitReview(){
 
     review:this.reviewText,
 
-    verified:true
+    verified:verifiedUser
 
   };
 
@@ -293,17 +324,15 @@ submitReview(){
 
       this.getReviews();
 
-      this.reviewText = '';
+      this.reviewText='';
 
-      this.rating = 0;
+      this.rating=0;
 
       alert('Review Added');
 
     },
 
     error:(err)=>{
-
-      console.log(err);
 
       alert(
         err.error?.message ||
@@ -315,6 +344,7 @@ submitReview(){
   });
 
 }
+
 getReviews(){
 
   const routeId =
@@ -327,26 +357,64 @@ getReviews(){
 
     this.reviews = data;
 
-    if(this.reviews.length > 0){
+    this.reviews.forEach(
 
-      const total =
-      this.reviews.reduce(
-        (
-          sum:any,
-          item:any
-        ) => sum + item.rating,
-        0
-      );
+      (review:any)=>{
 
-      this.averageRating =
-      total / this.reviews.length;
+        review.trustedReviewer =
+        (review.upvotes || 0) >= 5;
 
-    }
+      }
+
+    );
+
+    const visibleReviews =
+    this.reviews.filter(
+
+      (item:any)=>!item.hidden
+
+    );
+
+    const total =
+    visibleReviews.reduce(
+
+      (sum:any,item:any)=>
+
+      sum + item.rating,
+
+      0
+
+    );
+
+    this.averageRating =
+      visibleReviews.length > 0
+      ? total / visibleReviews.length
+      : 0;
 
   });
 
 }
+
 editReview(review:any){
+
+  const created =
+  new Date(review.createdAt).getTime();
+
+  const now =
+  new Date().getTime();
+
+  const hours =
+  (now-created)/(1000*60*60);
+
+  if(hours>24){
+
+    alert(
+      'Editing time expired.'
+    );
+
+    return;
+
+  }
 
   const updatedReview =
   prompt(
@@ -355,31 +423,27 @@ editReview(review:any){
   );
 
   if(!updatedReview){
+
     return;
+
   }
 
   this.reviewService
   .updateReview(
+
     review._id,
+
     {
-      review: updatedReview
+
+      review:updatedReview
+
     }
+
   )
-  .subscribe({
 
-    next:()=>{
+  .subscribe(()=>{
 
-      this.getReviews();
-
-    },
-
-    error:(err)=>{
-
-      alert(
-        err.error.message
-      );
-
-    }
+    this.getReviews();
 
   });
 

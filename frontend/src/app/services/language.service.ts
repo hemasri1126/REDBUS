@@ -1,0 +1,316 @@
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LanguageService {
+
+  currentLanguage =
+    localStorage.getItem('language') || 'English';
+
+  translations:any = {
+
+    English:{
+      community:'Community',
+      notifications:'Notifications',
+      routePlanner:'Route Planner',
+      createPost:'Create Post',
+      delete:'Delete',
+      edit:'Edit',
+      like:'Like',
+      comment:'Comment',
+      save:'Save',
+      saved:'Saved',
+      follow:'Follow',
+      following:'Following',
+      share:'Share',
+      report:'Report',
+      removeReport:'Remove Report',
+      totalPosts:'Total Posts',
+      totalLikes:'Total Likes',
+      comments:'Comments',
+      likes:'Likes',
+      popularRoutes:'Popular Routes',
+      travelCommunity:'Travel Community',
+      travelForums:'Travel Discussion Forums',
+      joinDiscussion:'Join Discussion',
+      faq:'Frequently Asked Questions',
+general:'General',
+ticketRelated:'Ticket Related',
+payment:'Payment',
+cancellationRefund:'Cancellation & Refund',
+insurance:'Insurance',
+
+topRTCs:'Top RTCs',
+topRoutes:'Top Bus Routes',
+topCities:'Top Cities',
+
+bookTrainTickets:'Book Train Tickets',
+pnrStatus:'PNR Status',
+liveTrainStatus:'Live Train Status',
+trainSeatAvailability:'Train Seat Availability',
+trainsBetweenStations:'Trains Between Stations',
+
+aboutTedbus:'About tedbus',
+aboutUs:'About Us',
+contactUs:'Contact Us',
+offers:'Offers',
+careers:'Careers',
+privacyPolicy:'Privacy Policy',
+blog:'Blog',
+deliveryStatus:'Delivery Status',
+delivered:'Delivered',
+help:'Help',
+account:'Account',
+myTrips:'My Trips',
+walletCards:'Wallet/Cards',
+myProfile:'My Profile',
+wallet:'Wallet',
+signOut:'Sign Out',
+busTickets:'Bus Tickets',
+cabRental:'Cab Rental',
+trainTickets:'Train Tickets',
+homeTitle:"India's No.1 Online Bus Ticket Booking Site",
+
+from:"From",
+
+to:"To",
+
+date:"Date",
+
+searchBuses:"Search Buses",
+
+trendingOffers:"Trending Offers",
+
+viewAll:"View All",
+startLocation:'Start Location',
+destination:'Destination',
+showRoute:'Show Route',
+saveRoute:'Save Route',
+clearRoute:'Clear Route',
+waypoints:'Waypoints',
+addWaypoint:'Add Waypoint',
+routeDetails:'Route Details',
+alternativeRoutes:'Alternative Routes',
+savedRoutes:'Saved Routes',
+routeComparison:'Route Comparison',
+rateReview:'Rate & Review Route',
+submitReview:'Submit Review',
+averageRating:'Average Rating'
+    },
+
+    Hindi:{
+      community:'समुदाय',
+      notifications:'सूचनाएं',
+      routePlanner:'रूट प्लानर',
+      createPost:'पोस्ट बनाएं',
+      delete:'डिलीट',
+      edit:'संपादित करें',
+      like:'पसंद',
+      comment:'टिप्पणी',
+      save:'सेव',
+      saved:'सहेजा गया',
+      follow:'फॉलो',
+      following:'फॉलो कर रहे हैं',
+      share:'साझा करें',
+      report:'रिपोर्ट',
+      removeReport:'रिपोर्ट हटाएं',
+      totalPosts:'कुल पोस्ट',
+      totalLikes:'कुल लाइक्स',
+      comments:'टिप्पणियाँ',
+      likes:'लाइक्स',
+      popularRoutes:'लोकप्रिय मार्ग',
+      travelCommunity:'यात्रा समुदाय',
+      travelForums:'यात्रा चर्चा मंच',
+      joinDiscussion:'चर्चा में शामिल हों',
+      faq:'अक्सर पूछे जाने वाले प्रश्न',
+general:'सामान्य',
+ticketRelated:'टिकट संबंधित',
+payment:'भुगतान',
+cancellationRefund:'रद्दीकरण और रिफंड',
+insurance:'बीमा',
+
+topRTCs:'शीर्ष RTCs',
+topRoutes:'शीर्ष बस मार्ग',
+topCities:'शीर्ष शहर',
+
+bookTrainTickets:'ट्रेन टिकट बुक करें',
+pnrStatus:'PNR स्थिति',
+liveTrainStatus:'लाइव ट्रेन स्थिति',
+trainSeatAvailability:'सीट उपलब्धता',
+trainsBetweenStations:'स्टेशनों के बीच ट्रेनें',
+
+aboutTedbus:'Tedbus के बारे में',
+aboutUs:'हमारे बारे में',
+contactUs:'संपर्क करें',
+offers:'ऑफर',
+careers:'करियर',
+privacyPolicy:'गोपनीयता नीति',
+blog:'ब्लॉग',
+
+notificationPreferences:'सूचना प्राथमिकताएं',
+showAll:'सभी दिखाएं',
+bookingConfirmation:'बुकिंग पुष्टि',
+scheduleChange:'समय परिवर्तन',
+fillDetails:'कृपया सभी विवरण भरें',
+verified:'सत्यापित',
+postedRecently:'हाल ही में पोस्ट किया गया',
+route:'मार्ग',
+trending:'लोकप्रिय',
+searchPlaceholder:'मार्ग, कहानियां और यात्रा सुझाव खोजें',
+enterTitle:'शीर्षक दर्ज करें',
+shareExperience:'अपना यात्रा अनुभव साझा करें',
+routeName:'मार्ग का नाम',
+submitPost:'पोस्ट सबमिट करें',
+posting:'पोस्ट हो रहा है...',
+noPosts:'कोई पोस्ट उपलब्ध नहीं',
+startSharing:'यात्रा कहानियां, सुझाव और अनुभव साझा करें',
+deliveryStatus:'डिलीवरी स्थिति',
+delivered:'डिलीवर किया गया',
+help:'सहायता',
+account:'खाता',
+myTrips:'मेरी यात्राएँ',
+walletCards:'वॉलेट/कार्ड',
+myProfile:'मेरी प्रोफ़ाइल',
+wallet:'वॉलेट',
+signOut:'साइन आउट',
+busTickets:'बस टिकट',
+cabRental:'कैब किराया',
+trainTickets:'ट्रेन टिकट',
+homeTitle:"भारत की नंबर 1 ऑनलाइन बस टिकट बुकिंग साइट",
+
+from:"से",
+
+to:"तक",
+
+date:"तारीख",
+
+searchBuses:"बस खोजें",
+
+trendingOffers:"लोकप्रिय ऑफर",
+
+viewAll:"सभी देखें",
+    },
+
+    Telugu:{
+      community:'కమ్యూనిటీ',
+      notifications:'నోటిఫికేషన్లు',
+      routePlanner:'రూట్ ప్లానర్',
+      createPost:'పోస్ట్ సృష్టించు',
+      delete:'తొలగించు',
+      edit:'సవరించు',
+      like:'లైక్',
+      comment:'వ్యాఖ్య',
+      save:'సేవ్',
+      saved:'సేవ్ చేయబడింది',
+      follow:'ఫాలో',
+      following:'ఫాలో అవుతున్నారు',
+      share:'షేర్',
+      report:'రిపోర్ట్',
+      removeReport:'రిపోర్ట్ తొలగించు',
+      totalPosts:'మొత్తం పోస్టులు',
+      totalLikes:'మొత్తం లైక్స్',
+      comments:'వ్యాఖ్యలు',
+      likes:'లైక్స్',
+      popularRoutes:'ప్రసిద్ధ మార్గాలు',
+      travelCommunity:'ప్రయాణ కమ్యూనిటీ',
+      travelForums:'ప్రయాణ చర్చా వేదికలు',
+      joinDiscussion:'చర్చలో చేరండి',
+      faq:'తరచుగా అడిగే ప్రశ్నలు',
+general:'సాధారణ',
+ticketRelated:'టికెట్ సంబంధిత',
+payment:'చెల్లింపు',
+cancellationRefund:'రద్దు & రీఫండ్',
+insurance:'భీమా',
+
+topRTCs:'టాప్ RTCలు',
+topRoutes:'టాప్ బస్ రూట్లు',
+topCities:'టాప్ నగరాలు',
+
+bookTrainTickets:'రైలు టికెట్లు బుక్ చేయండి',
+pnrStatus:'PNR స్థితి',
+liveTrainStatus:'లైవ్ ట్రైన్ స్థితి',
+trainSeatAvailability:'సీట్ల లభ్యత',
+trainsBetweenStations:'స్టేషన్ల మధ్య రైళ్లు',
+
+aboutTedbus:'Tedbus గురించి',
+aboutUs:'మా గురించి',
+contactUs:'మమ్మల్ని సంప్రదించండి',
+offers:'ఆఫర్లు',
+careers:'కెరీర్స్',
+privacyPolicy:'గోప్యతా విధానం',
+blog:'బ్లాగ్',
+
+notificationPreferences:'నోటిఫికేషన్ ప్రాధాన్యతలు',
+showAll:'అన్నీ చూపించు',
+bookingConfirmation:'బుకింగ్ నిర్ధారణ',
+scheduleChange:'షెడ్యూల్ మార్పు',
+fillDetails:'దయచేసి అన్ని వివరాలు నమోదు చేయండి',
+verified:'ధృవీకరించబడింది',
+postedRecently:'ఇటీవల పోస్ట్ చేయబడింది',
+route:'రూట్',
+trending:'ట్రెండింగ్',
+searchPlaceholder:'రూట్లు, కథలు మరియు ప్రయాణ సూచనలు వెతకండి',
+enterTitle:'శీర్షిక నమోదు చేయండి',
+shareExperience:'మీ ప్రయాణ అనుభవాన్ని పంచుకోండి',
+routeName:'రూట్ పేరు',
+submitPost:'పోస్ట్ సమర్పించండి',
+posting:'పోస్ట్ అవుతోంది...',
+noPosts:'పోస్టులు లేవు',
+startSharing:'ప్రయాణ కథలు, సూచనలు మరియు అనుభవాలను పంచుకోండి',
+deliveryStatus:'డెలివరీ స్థితి',
+delivered:'డెలివర్ చేయబడింది',
+help:'సహాయం',
+account:'ఖాతా',
+myTrips:'నా ప్రయాణాలు',
+walletCards:'వాలెట్/కార్డులు',
+myProfile:'నా ప్రొఫైల్',
+wallet:'వాలెట్',
+signOut:'సైన్ అవుట్',
+busTickets:'బస్ టికెట్లు',
+cabRental:'క్యాబ్ అద్దె',
+trainTickets:'రైలు టికెట్లు',
+homeTitle:"భారతదేశం యొక్క నం.1 ఆన్‌లైన్ బస్ టికెట్ బుకింగ్ సైట్",
+
+from:"నుండి",
+
+to:"వరకు",
+
+date:"తేదీ",
+
+searchBuses:"బస్సులు వెతకండి",
+
+trendingOffers:"ట్రెండింగ్ ఆఫర్లు",
+
+viewAll:"అన్నీ చూడండి",
+    }
+    
+
+  };
+
+  changeLanguage(language:string){
+
+    this.currentLanguage = language;
+
+    localStorage.setItem(
+      'language',
+      language
+    );
+
+  }
+
+  get(key:string){
+
+    return (
+      this.translations[this.currentLanguage]?.[key]
+      ||
+      this.translations['English'][key]
+      ||
+      key
+    );
+
+  }
+
+}
+

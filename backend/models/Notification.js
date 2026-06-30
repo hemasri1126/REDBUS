@@ -2,46 +2,30 @@ const mongoose = require('mongoose');
 
 const NotificationSchema = new mongoose.Schema({
 
-    title:{
-        type:String
-    },
+  title:String,
 
-    message:{
-        type:String
-    },
+  message:String,
 
-    status:{
-        type:String,
-        default:'unread'
-    },
+  type:String,
 
-    type:{
-        type:String
-    },
+  status:String,
 
-    language:{
-        type:String,
-        default:'English'
-    },
+  language:String,
 
-    deliveryStatus:{
-        type:String,
-        default:'Delivered'
-    },
+ deliveryStatus:{
+    type:String,
+    default:'Pending'
+},
 
-    retryCount:{
-        type:Number,
-        default:0
-    },
-
-    createdAt:{
-        type:Date,
-        default:Date.now
-    }
+  createdAt:{
+    type:Date,
+    default:Date.now
+  }
 
 });
 
-module.exports = mongoose.model(
-    'Notification',
-    NotificationSchema
+module.exports =
+mongoose.model(
+  'Notification',
+  NotificationSchema
 );
