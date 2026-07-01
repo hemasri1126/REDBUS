@@ -168,3 +168,20 @@ select{
     cursor:pointer;
 
 }
+.retry-btn{
+
+    background:#ff9800;
+    color:white;
+    border:none;
+    padding:8px 16px;
+    border-radius:8px;
+    margin-left:10px;
+    cursor:pointer;
+
+}
+
+.retry-btn:hover{
+
+    opacity:.9;
+
+}

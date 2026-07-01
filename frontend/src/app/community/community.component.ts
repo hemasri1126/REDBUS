@@ -354,5 +354,59 @@ export class CommunityComponent {
     );
 
   }
+ shareWhatsApp(post:any){
+
+  const message =
+
+`🚌 Check out this travel story on TedBus!
+
+📌 Title:
+${post.title}
+
+📝 Story:
+${post.description}
+
+📍 Route:
+${post.route}
+
+🌐 Visit TedBus:
+https://redbuswebsite.netlify.app`;
+
+  window.open(
+    `https://wa.me/?text=${encodeURIComponent(message)}`,
+    '_blank'
+  );
+
+}
+
+shareFacebook(post:any){
+
+  const url =
+  'https://redbuswebsite.netlify.app';
+
+  window.open(
+    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+    '_blank'
+  );
+
+}
+
+copyLink(post:any){
+
+const text =
+
+`🚌 ${post.title}
+
+${post.description}
+
+Route: ${post.route}
+
+https://redbuswebsite.netlify.app`;
+
+navigator.clipboard.writeText(text);
+
+alert('Post copied successfully!');
+
+}
 
 }

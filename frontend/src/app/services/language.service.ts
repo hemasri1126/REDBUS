@@ -106,6 +106,7 @@ stop:'Stop',
 time:'Time',
 deleteRoute:'Delete Route',
 savePreferences:'Save Preferences',
+retry:'Retry',
     },
 
     Hindi:{
@@ -208,6 +209,7 @@ stop:'स्टॉप',
 time:'समय',
 deleteRoute:'मार्ग हटाएं',
 savePreferences:'प्राथमिकताएँ सहेजें',
+retry:'पुनः प्रयास',
     },
 
     Telugu:{
@@ -310,6 +312,7 @@ stop:'స్టాప్',
 time:'సమయం',
 deleteRoute:'మార్గాన్ని తొలగించండి',
 savePreferences:'ప్రాధాన్యతలను సేవ్ చేయండి',
+retry:'మళ్లీ ప్రయత్నించండి',
     }
     
 

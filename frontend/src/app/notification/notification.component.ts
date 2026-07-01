@@ -458,4 +458,34 @@ if(promo!==null)
 this.promoEnabled=JSON.parse(promo);
 
 }
+retryNotification(notification:any){
+
+  if(notification.deliveryStatus === 'Delivered'){
+
+    alert('Already Delivered');
+
+    return;
+
+  }
+
+  notification.retryCount =
+  (notification.retryCount || 0) + 1;
+
+  if(notification.retryCount >= 3){
+
+    notification.deliveryStatus =
+    'Delivered';
+
+    alert('Notification Delivered');
+
+  }
+  else{
+
+    notification.deliveryStatus =
+    'Retry Attempt ' +
+    notification.retryCount;
+
+  }
+
+}
 }

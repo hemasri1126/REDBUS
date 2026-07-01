@@ -386,3 +386,18 @@
     border-radius:8px;
     cursor:pointer;
 }
+
+.share-btn{
+    margin:6px;
+    padding:8px 14px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#1f7aec;
+    color:white;
+    transition:.3s;
+}
+
+.share-btn:hover{
+    opacity:.9;
+}

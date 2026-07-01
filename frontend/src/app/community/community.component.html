@@ -12,7 +12,7 @@
             </h1>
 
             <p class="community-subtitle">
-                Share travel stories, tips and route experiences with fellow travelers.
+              {{languageService.get('communitySubtitle')}}
             </p>
 
         </div>
@@ -32,7 +32,7 @@
 
         <input class="search-input"
                type="text"
-               placeholder="Search routes, stories and travel tips"
+               [placeholder]="languageService.get('searchPlaceholder')"
                [(ngModel)]="searchText">
 
     </div>
@@ -76,19 +76,19 @@
          *ngIf="showForm">
 
         <input type="text"
-               placeholder="Enter title"
+           [placeholder]="languageService.get('enterTitle')"
                [(ngModel)]="title">
 
-        <textarea placeholder="Share your travel experience"
+        <textarea [placeholder]="languageService.get('shareExperience')"
                   [(ngModel)]="description">
         </textarea>
 
         <input type="text"
-               placeholder="Route name"
+               [placeholder]="languageService.get('routeName')"
                [(ngModel)]="route">
 
         <input type="text"
-               placeholder="#Travel #Hyderabad"
+               [placeholder]="languageService.get('hashtags')"
                [(ngModel)]="hashtags">
 
         <input type="file"
@@ -98,7 +98,9 @@
                 type="button"
                 (click)="createPost()">
 
-            {{ loading ? 'Posting...' : 'Submit Post' }}
+          {{ loading
+? languageService.get('posting')
+: languageService.get('submitPost') }}
 
         </button>
 
@@ -109,10 +111,10 @@
     <div *ngIf="posts.length==0"
          class="empty-post">
 
-        <h2>No posts available</h2>
+        <h2>{{languageService.get('noPostsAvailable')}}</h2>
 
         <p>
-            Start sharing your travel experiences and travel tips.
+            {{languageService.get('startSharingExperiences')}}
         </p>
 
     </div>
@@ -261,7 +263,29 @@
        : languageService.get('report') }}
 
 </button>
+<button
+class="share-btn"
+(click)="shareWhatsApp(post)">
 
+📱 WhatsApp
+
+</button>
+
+<button
+class="share-btn"
+(click)="shareFacebook(post)">
+
+📘 Facebook
+
+</button>
+
+<button
+class="share-btn"
+(click)="copyLink(post)">
+
+🔗 Copy Link
+
+</button>
         </div>
 
         <!-- COMMENTS -->
@@ -270,7 +294,7 @@
 
             <input class="comment-input"
                    type="text"
-                   placeholder="Write a comment"
+                   [placeholder]="languageService.get('writeComment')"
                    [(ngModel)]="post.newComment">
 
       <button class="comment-btn"

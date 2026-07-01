@@ -35,18 +35,15 @@
     <div class="waypoint-section">
 
         <h3>
-            {{languageService.get('waypoints')}}
+           [placeholder]="languageService.get('enterWaypoint')"
         </h3>
 
         <div class="waypoint-card"
              *ngFor="let point of waypoints; let i = index">
 
-            <span>
-
-                Stop {{i+1}}
-
-            </span>
-
+          <span>
+    {{languageService.get('stop')}} {{i+1}}
+</span>
            <input
     type="text"
     [(ngModel)]="waypoints[i]"
@@ -231,13 +228,17 @@
              <button
 (click)="toggleFavorite(route)">
 
-  {{route.favorite ? '★ Favorited' : '☆ Add to Favorites'}}
+{{
+route.favorite
+? '★ ' + languageService.get('favorited')
+: '☆ ' + languageService.get('addToFavorites')
+}}
 
 </button>
 <button
 (click)="deleteRoute(route._id)">
 
-    Delete Route
+   {{languageService.get('deleteRoute')}}
 
 </button>
             <p>
