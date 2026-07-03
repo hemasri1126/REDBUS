@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class LanguageService {
 
-  currentLanguage =
-    localStorage.getItem('language') || 'English';
+currentLanguage = 'English';
 
   translations: any = {
     English:{
@@ -318,16 +317,11 @@ retry:'మళ్లీ ప్రయత్నించండి',
 
   };
 
-  changeLanguage(language:string){
+ changeLanguage(language:string){
 
-    this.currentLanguage = language;
+  this.currentLanguage = language;
 
-    localStorage.setItem(
-      'language',
-      language
-    );
-
-  }
+}
 
   get(key:string){
 

@@ -30,35 +30,36 @@
 
     </div>
 
-    <!-- WAYPOINTS -->
+   <!-- WAYPOINTS -->
 
-    <div class="waypoint-section">
+<div class="waypoint-section">
 
-        <h3>
-           [placeholder]="languageService.get('enterWaypoint')"
-        </h3>
+    <h3>
+        {{languageService.get('waypoints')}}
+    </h3>
 
-        <div class="waypoint-card"
-             *ngFor="let point of waypoints; let i = index">
+    <div class="waypoint-card"
+         *ngFor="let point of waypoints; let i = index">
 
-          <span>
-    {{languageService.get('stop')}} {{i+1}}
-</span>
-           <input
-    type="text"
-    [(ngModel)]="waypoints[i]"
-    [placeholder]="languageService.get('enterWaypoint')">
+        <span>
+            {{languageService.get('stop')}} {{i+1}}
+        </span>
 
-      
+        <input
+          type="text"
+          [(ngModel)]="waypoints[i]"
+          [placeholder]="languageService.get('enterWaypoint')">
 
     </div>
 
-<button
-(click)="addWaypoint()">
+</div>
 
- {{languageService.get('addWaypoint')}}
+<button (click)="addWaypoint()">
+
+    {{languageService.get('addWaypoint')}}
 
 </button>
+
     <!-- MAP -->
 
     <div class="map-wrapper">
