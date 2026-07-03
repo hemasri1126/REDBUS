@@ -290,7 +290,9 @@ route.favorite
 
   <div class="rating-box">
 
-    <label>Rating (1–5)</label>
+    <label>
+ {{languageService.get('rating')}}
+</label>
 
     <select [(ngModel)]="rating">
 
@@ -304,11 +306,11 @@ route.favorite
 
   </div>
 
-  <textarea
+<textarea
     [(ngModel)]="reviewText"
-    placeholder="Write your review..."
+    [placeholder]="languageService.get('writeReview')"
     rows="4">
-  </textarea>
+</textarea>
 
   <button (click)="submitReview()">
    {{languageService.get('submitReview')}}
@@ -330,7 +332,7 @@ route.favorite
       *ngIf="review.trustedReviewer"
       class="trusted-badge">
 
-      ⭐ Trusted Reviewer
+      ⭐ {{languageService.get('trustedReviewer')}}
 
     </span>
 
@@ -345,11 +347,11 @@ route.favorite
   </p>
 
   <p *ngIf="review.verified">
-    ✔ Verified User
+    ✔ {{languageService.get('verifiedUser')}}
   </p>
 
   <p>
-    👍 Helpful Votes:
+   👍 {{languageService.get('helpfulVotes')}}:
     {{review.upvotes || 0}}
   </p>
 
@@ -357,7 +359,7 @@ route.favorite
     class="helpful-btn"
     (click)="upvoteReview(review)">
 
-    👍 Helpful
+  👍 {{languageService.get('helpful')}}
 
   </button>
 
@@ -365,7 +367,7 @@ route.favorite
     class="edit-review-btn"
     (click)="editReview(review)">
 
-    Edit Review
+    {{languageService.get('editReview')}}
 
   </button>
 
@@ -373,15 +375,14 @@ route.favorite
     class="report-btn"
     (click)="reportReview(review)">
 
-    Report
+  {{languageService.get('report')}}
 
   </button>
 <button
   class="delete-review-btn"
   (click)="deleteReview(review)">
 
-  Delete
-
+{{languageService.get('delete')}}
 </button>
 </div>
 

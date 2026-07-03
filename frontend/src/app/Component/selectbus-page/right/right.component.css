@@ -1,0 +1,88 @@
+:host{
+
+    display:block;
+
+    flex:1;
+
+    background:white;
+
+    min-height:650px;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.12);
+
+}
+
+
+/* safety message */
+
+.safety-box,
+p:first-child{
+
+    background:#fff4f4;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    color:#333;
+
+    font-weight:bold;
+
+}
+
+
+/* heading row */
+
+div{
+
+    margin-top:20px;
+
+}
+
+
+h3{
+
+    color:#222;
+
+    font-size:22px;
+
+}
+
+
+/* bus card */
+
+.bus-box,
+.bus-card{
+
+    background:white;
+
+    padding:25px;
+
+    margin-top:25px;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 5px 18px rgba(0,0,0,.15);
+
+}
+
+
+button{
+
+    background:#e63946;
+
+    color:white;
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+}

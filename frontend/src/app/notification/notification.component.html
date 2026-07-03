@@ -3,28 +3,29 @@
 <button class="create-btn"
         (click)="createSampleNotification()">
 
-   {{translations.create}}
+   {{languageService.get('createNotification')}}
 
 </button>
 
 <button class="event-btn"
         (click)="createJourneyReminder()">
 
-{{translations.reminder}}
+{{languageService.get('journeyReminder')}}
 
 </button>
+
+
 
 <button class="event-btn"
         (click)="createOfferNotification()">
 
-    {{translations.offer}}
+{{languageService.get('promotionalOffer')}}
 
 </button>
-
 <button class="event-btn"
         (click)="createCancellationNotification()">
 
-    {{translations.cancel}}
+{{languageService.get('cancellationAlert')}}
 
 </button>
 

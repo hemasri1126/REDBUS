@@ -106,6 +106,13 @@ time:'Time',
 deleteRoute:'Delete Route',
 savePreferences:'Save Preferences',
 retry:'Retry',
+createNotification:'Create Notification',
+journeyReminder:'Journey Reminder',
+promotionalOffer:'Promotional Offer',
+cancellationAlert:'Cancellation Alert',
+rating: 'Rating (1-5)',
+writeReview: 'Write your review...',
+
     },
 
     Hindi:{
@@ -209,6 +216,14 @@ time:'समय',
 deleteRoute:'मार्ग हटाएं',
 savePreferences:'प्राथमिकताएँ सहेजें',
 retry:'पुनः प्रयास',
+createNotification:'सूचना बनाएं',
+journeyReminder:'यात्रा अनुस्मारक',
+promotionalOffer:'प्रचार प्रस्ताव',
+cancellationAlert:'रद्दीकरण सूचना',
+rating: 'रेटिंग (1-5)',
+writeReview: 'अपनी समीक्षा लिखें...',
+submitReview: 'समीक्षा सबमिट करें',
+averageRating: 'औसत रेटिंग',
     },
 
     Telugu:{
@@ -312,6 +327,14 @@ time:'సమయం',
 deleteRoute:'మార్గాన్ని తొలగించండి',
 savePreferences:'ప్రాధాన్యతలను సేవ్ చేయండి',
 retry:'మళ్లీ ప్రయత్నించండి',
+createNotification:'నోటిఫికేషన్ సృష్టించండి',
+journeyReminder:'ప్రయాణ రిమైండర్',
+promotionalOffer:'ప్రచార ఆఫర్',
+cancellationAlert:'రద్దు హెచ్చరిక',
+rating: 'రేటింగ్ (1-5)',
+writeReview: 'మీ సమీక్షను వ్రాయండి...',
+submitReview: 'సమీక్షను సమర్పించండి',
+averageRating: 'సగటు రేటింగ్',
     }
     
 
